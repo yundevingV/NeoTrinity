@@ -21,7 +21,7 @@ export default function Group(){
             
             <Grid item xs={12} sm={12}>
                 <Box p={1}>
-                    Group Name
+                    그룹 이름
                 </Box>
             </Grid>
 
