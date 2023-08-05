@@ -66,13 +66,13 @@ export default function Group(){
             {/* 그룹 투표 */}
             <Grid item xs={12} sm={6}>
                 <Box bgcolor="info.main" color="info.contrastText" p={7}>
-                진행중
+                진행중인 투표
                 </Box>
             </Grid>
 
             <Grid item xs={12} sm={6}>
                 <Box bgcolor="info.main" color="info.contrastText" p={7}>
-                종료된
+                종료된 투표
                 </Box>
             </Grid>
             
