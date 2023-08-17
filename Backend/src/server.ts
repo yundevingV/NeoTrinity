@@ -1,6 +1,6 @@
 import * as http from 'http'
 
-import { app } from './app'
+import { app } from './app.js'
 
 function normalizePort(val: string): number {
     let port: number = parseInt(val, 10);
