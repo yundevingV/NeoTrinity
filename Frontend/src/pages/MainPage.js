@@ -1,7 +1,7 @@
 import * as React from 'react';
 import AppBar from '../components/NavigationBar'
 import HorizontalList from '../components/HorizontalList';
-import Album from '../components/Album'
+// import Album from '../components/Album'
 
 function MainPage () {
     return(
