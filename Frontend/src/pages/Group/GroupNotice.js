@@ -1,20 +1,20 @@
 import React from "react";
 
+import AppBar from '../../components/NavigationBar';
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
 import { styled } from "styled-components";
-import { Avatar } from "@mui/material";
 
-import GroupIcon from '@mui/icons-material/Group';
 
-import SideBar from '../../components/sidebar'
 import { H1 } from "../../styles/HStyles";
 
 export default function GroupNotice(){
     return(
-        <>
-            {/* <SideBar /> */}
+        
+            <AppBar content={
+            <>
             <ContainerGrid container spacing={1}>
             
             {/* 그룹 로고 & 설명 */}
@@ -45,11 +45,13 @@ export default function GroupNotice(){
             </Grid>
 
             </ContainerGrid>
-        </>
+            </>
+            }>
+
+            </AppBar>
   )}
 
 const ContainerGrid = styled(Grid)`
     
-    padding : 100px;
-    margin: 0 auto;
+  
 `
