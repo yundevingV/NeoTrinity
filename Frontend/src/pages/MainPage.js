@@ -7,7 +7,7 @@ function MainPage () {
     return(
         <>
         {/* <AppBar content = {<HorizontalList></HorizontalList>}/> */}
-        <AppBar content = {<p>sadjfijdsaoifjidsa</p>}/>
+        <AppBar content = {<p></p>}/>
         
         
         
