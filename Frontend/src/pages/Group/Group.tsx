@@ -1,24 +1,28 @@
 import React from "react";
 
+import AppBar from '../../components/NavigationBar';
+
+import { H1 } from "../../styles/HStyles";
+
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { Avatar } from "@mui/material";
 import GroupIcon from '@mui/icons-material/Group';
 
-import { styled } from "styled-components";
 
-import { H1 } from "../../styles/HStyles";
+import { styled } from "styled-components";
 
 export default function Group(){
     return(
         <>
-            <ContainerGrid container spacing={1}>
             
-            {/* <SideBar /> */}
-            
-            {/* 그룹 로고 & 설명 */}
+            <AppBar content = 
+            {
+            <>
 
-            
+            <ContainerGrid container spacing={1}>
+
             <Grid item xs={12} sm={12}>
                 <Box p={1}>
                     <H1>
@@ -30,9 +34,9 @@ export default function Group(){
             <Grid item xs={12} sm={2}>
                 
                 <Box p={5}>
-                <Avatar sx={{ width : 50, height : 50, bgcolor: 'secondary.main' }} >
-                    <GroupIcon />
-                </Avatar>
+                    <Avatar sx={{ width : 50, height : 50, bgcolor: 'secondary.main' }} >
+                        <GroupIcon />
+                    </Avatar>
                 </Box>
             </Grid>
 
@@ -90,13 +94,14 @@ export default function Group(){
                 종료된 투표
                 </Box>
             </Grid>
-            
+
             </ContainerGrid>
+            </>
+            }
+            />
         </>
   )}
 
 const ContainerGrid = styled(Grid)`
-    
-    padding : 100px;
-    margin: 0 auto;
+
 `

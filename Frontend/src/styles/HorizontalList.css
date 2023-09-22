@@ -1,0 +1,30 @@
+.horizontal-scroll-container {
+    width: 100%;
+    overflow-x: auto; /* 가로 스크롤을 활성화합니다. */
+    white-space: nowrap; /* 내용물이 가로로 나열될 수 있도록 설정합니다. */
+  }
+  
+  .horizontal-scroll-content {
+    display: inline-block; /* 내용물들이 가로로 나열되도록 설정합니다. */
+  }
+  
+  .item {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    background-color: #ddd;
+  }
+
+  .hori{
+    width: 5px;
+    padding: 20px;
+    overflow: scroll;
+    color: #112031;
+    background: #F0D9FF;
+    border: 1px solid #000;
+     /* 가로 스크롤 */
+    overflow: auto;
+    white-space: nowrap;
+
+  }
