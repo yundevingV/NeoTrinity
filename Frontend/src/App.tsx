@@ -11,10 +11,12 @@ import GroupNoticeDetail from './pages/Group/GroupNoticeDetail';
 import GroupVote from './pages/Group/GroupVote';
 import GroupVoteDetail from './pages/Group/GroupVoteDetail';
 import Profile from './pages/Proifle/Profile';
+import { GlobalStyle } from './styles/global';
 
 function App() {
   return (
     <div className="App">
+      <GlobalStyle />
       <Routes>
         <Route path='/' element = {<Login />} />
         <Route path='/signUp' element = {<SignUp />} />
