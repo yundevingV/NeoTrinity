@@ -47,8 +47,7 @@ display : flex;
 align-items : center;
 border-radius : 12px;
 
-background : #ffff;
-
+background : #e2e2e2;
 `
 
 const NoticeContainer = styled.div`
@@ -66,8 +65,7 @@ height : 50px;
 margin : 5px auto;
 padding : 0px 15px;
 
-background : #fff;
-
+background : #e2e2e2;
 border-radius : 12px;
 
 display : flex;
@@ -89,8 +87,7 @@ width : 200px;
 height : 150px;
 border-radius : 8px;
 
-background : #ffff;
-
+background : #e2e2e2;
 display : flex;
 flex-direction : column;
 justify-content : start;
@@ -104,8 +101,7 @@ height : 150px;
 
 border-radius : 8px;
 
-background : #ffff;
-
+background : #e2e2e2;
 display : flex;
 flex-direction : column;
 justify-content : start;
@@ -141,10 +137,10 @@ export default function Group(){
 
             <NoticeContainer>
                 <NoticeItem>
-                안녕하세요 11월 1일날 저희 모각코 시간에 GDSC ...
+                11월 1일날 GDSC 일정
                 </NoticeItem>
                 <NoticeItem>
-                11월 29일에는 졸업자 초청 행사가 있습니다 ...
+                11월 29일날 GDSC 일정
                 </NoticeItem>
             </NoticeContainer>
 
