@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { Route, Routes } from 'react-router-dom';
+import logo from './logo.svg';
 import './App.css';
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
@@ -12,12 +11,17 @@ import GroupVote from './pages/Group/GroupVote';
 import GroupVoteDetail from './pages/Group/GroupVoteDetail';
 import Profile from './pages/Proifle/Profile';
 import { GlobalStyle } from './styles/global';
+import SideBar from './components/SideBar/SideBar';
+
 
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
+
       <Routes>
+        <SideBar content={<MainPage/>}/>
+
         <Route path='/' element = {<Login />} />
         <Route path='/signUp' element = {<SignUp />} />
         <Route path='/main' element = {<Main />} />
@@ -34,7 +38,5 @@ function App() {
 
       </Routes>
     </div>
-  );
-}
 
-export default App;
+
