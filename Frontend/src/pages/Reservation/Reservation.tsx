@@ -26,6 +26,8 @@ padding : 10px;
 width : 20vw;
 height : 30px;
 
+border-radius : 8px;
+
 `
 const SearchContainer = styled.div`
 display : flex; 
@@ -45,7 +47,7 @@ display : flex;
 flex-direction : column;
 justify-content : center;
 
-background : #e2e2e2;
+background : #eeeeee;
 
 border-radius : 8px;
 
@@ -56,8 +58,15 @@ margin : 10px auto;
 const ReservationItem = styled.div`
 padding : 10px 20px;
 
-display : flex;
-align-items : center;
+text-align : left;
+
+.green{
+    color : green;
+}
+
+.red {
+    color : red;
+}
 
 
 `
@@ -72,6 +81,10 @@ background : #e2e2e2;
 border-radius : 8px;
 
 margin : 10px auto ;
+`
+
+const Hr = styled.hr`
+width : 90%;
 `
 export default function Reservation(){
     console.log(window.innerWidth)
@@ -97,12 +110,21 @@ export default function Reservation(){
             <h1>예약가능 물품 </h1>
 
             <ReservationAvaliableContainer>
-                <ReservationItem>
 
-                    <span>노트북  / 다솔관 컴퓨터공학과 사무실 / 대여가능 / 대여일로...</span>
-                </ReservationItem>
                 <ReservationItem>
-                    노트북  / 다솔관 컴퓨터공학과 사무실 / 대여가능 / 대여일로...
+                    
+                    <h3>노트북</h3>
+                    <p className='green'>대여가능</p>
+                    <p>다솔관 컴퓨터공학과 사무실</p>
+                </ReservationItem>
+
+                <Hr />
+
+                <ReservationItem>
+                    
+                    <h3>노트북</h3>
+                    <p className='green'>대여가능</p>
+                    <p>다솔관 컴퓨터공학과 사무실</p>
                 </ReservationItem>
             </ReservationAvaliableContainer>
 
@@ -110,8 +132,11 @@ export default function Reservation(){
 
             <ReservationUnavaliableContainer>
             <ReservationItem>
-                    노트북  / 다솔관 컴퓨터공학과 사무실 / 대여중 / ~10.31 부터...
-            </ReservationItem>
+                    
+                    <h3>노트북</h3>
+                    <p className='red'>대여불가능</p>
+                    <p>다솔관 컴퓨터공학과 사무실</p>
+                </ReservationItem>
             
             </ReservationUnavaliableContainer>
            

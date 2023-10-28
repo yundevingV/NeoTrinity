@@ -116,6 +116,10 @@ justify-content : start;
 padding : 10px;
 `
 
+const Hr = styled.hr`
+width : 90%;
+`
+
 export default function Group(){
     console.log(window.innerWidth)
     return(
@@ -146,6 +150,7 @@ export default function Group(){
                 <NoticeItem>
                 11월 1일날 GDSC 일정
                 </NoticeItem>
+                <Hr />
                 <NoticeItem>
                 11월 29일날 GDSC 일정
                 </NoticeItem>
@@ -168,6 +173,7 @@ export default function Group(){
                 <ProceededVote> 
                     
                     <span>10월 회식 장소</span>
+                    <Hr />
                     <span>9월 회식 장소</span>
 
                 </ProceededVote>
