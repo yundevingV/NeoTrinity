@@ -78,7 +78,7 @@ display : flex;
 justify-content : space-around;
 
 span {
-
+    margin-bottom : 10px;
 }
 `
 
