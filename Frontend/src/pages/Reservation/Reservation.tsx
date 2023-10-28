@@ -40,22 +40,21 @@ padding : 10px;
 `
 
 const ReservationAvaliableContainer = styled.div`
-width : 70vw;
+width : 50vw;
 display : flex;
 flex-direction : column;
 justify-content : center;
+
+background : #e2e2e2;
+
+border-radius : 8px;
+
+margin : 10px auto;
 `
 
 
 const ReservationItem = styled.div`
-width : 70%;
-height : 50px;
-
-margin : 5px auto;
-padding : 0px 15px;
-
-background : #e2e2e2;
-border-radius : 12px;
+padding : 10px 20px;
 
 display : flex;
 align-items : center;
@@ -63,10 +62,16 @@ align-items : center;
 
 `
 const ReservationUnavaliableContainer = styled.div`
-width : 70vw;
+width : 50vw;
 display : flex;
 flex-direction : column;
 justify-content : center;
+
+background : #e2e2e2;
+
+border-radius : 8px;
+
+margin : 10px auto ;
 `
 export default function Reservation(){
     console.log(window.innerWidth)
@@ -89,8 +94,9 @@ export default function Reservation(){
                 
             </SearchContainer>
 
+            <h1>예약가능 물품 </h1>
+
             <ReservationAvaliableContainer>
-                <h1>예약가능 물품 </h1>
                 <ReservationItem>
 
                     <span>노트북  / 다솔관 컴퓨터공학과 사무실 / 대여가능 / 대여일로...</span>
@@ -100,8 +106,9 @@ export default function Reservation(){
                 </ReservationItem>
             </ReservationAvaliableContainer>
 
-            <ReservationUnavaliableContainer>
             <h1>예약불가능 물품 </h1>
+
+            <ReservationUnavaliableContainer>
             <ReservationItem>
                     노트북  / 다솔관 컴퓨터공학과 사무실 / 대여중 / ~10.31 부터...
             </ReservationItem>

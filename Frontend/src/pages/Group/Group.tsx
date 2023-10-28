@@ -51,22 +51,22 @@ background : #e2e2e2;
 `
 
 const NoticeContainer = styled.div`
-width : 70vw;
+width : 50vw;
 display : flex;
 flex-direction : column;
 justify-content : center;
+
+background : #e2e2e2;
+
+border-radius : 8px;
+
+margin : 0 auto;
 `
 
 
 const NoticeItem = styled.div`
-width : 70%;
-height : 50px;
 
-margin : 5px auto;
-padding : 0px 15px;
-
-background : #e2e2e2;
-border-radius : 12px;
+padding : 10px 20px;
 
 display : flex;
 align-items : center;
@@ -80,6 +80,13 @@ justify-content : space-around;
 span {
     margin-bottom : 10px;
 }
+`
+const Left =styled.div`
+
+`
+
+const Right = styled.div`
+
 `
 
 const ProceedingVote = styled.div`
@@ -147,16 +154,24 @@ export default function Group(){
             {/* 그룹 투표 */}
             <h1>투표</h1>
 
-            <VoteContainer>
+            <VoteContainer>              
+                
+                <Left>
+                <h3>진행중인 투표</h3>
                 <ProceedingVote>
                     11월 회식 장소
                 </ProceedingVote>
-                <ProceededVote>
+                </Left>
 
+                <Right>
+                <h3>종료된 투표</h3>
+                <ProceededVote> 
+                    
                     <span>10월 회식 장소</span>
                     <span>9월 회식 장소</span>
 
                 </ProceededVote>
+                </Right>
             </VoteContainer>
 
         </Container>
