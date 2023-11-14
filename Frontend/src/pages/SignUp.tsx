@@ -185,23 +185,7 @@ margin : 10px;
 border : 2px solid #e2e2e2;
 padding : 0px;
 
-${(props) =>
-    props.password &&
-    css`
-        width: 300px;
-    `}
-    
-&::placeholder{
-    font-family: tway, sans-serif, Arial;
-	}
 
-//인풋 창 포커스
-&:focus {
-    //클릭 했을때 기본(?) 선 안나오게.
-    outline: none !important;
-
-    border: 2px solid blue;
-    }
 `
 const Button = styled.button`
 
