@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
-import Main from './pages/MainPage'
+import MainPage from './pages/MainPage'
 import Group from './pages/Group/Group'
 import GroupNotice from './pages/Group/GroupNotice'
 import GroupNoticeDetail from './pages/Group/GroupNoticeDetail';
@@ -25,7 +25,7 @@ export default function App() {
 
         <Route path='/login' element = {<Login />} />
         <Route path='/signUp' element = {<SideBar content={<SignUp />} />} />
-        <Route path='/' element = {<SideBar content={<Main/>}/>} />
+        <Route path='/' element = {<SideBar content={<MainPage/>}/>} />
 
         {/* profile */}
         <Route path='/profile' element = {<Profile />} />

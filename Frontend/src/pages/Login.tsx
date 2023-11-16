@@ -1,89 +1,92 @@
-import React,{useState} from "react";
-
-
+import React, { useState } from "react";
 import { styled } from "styled-components";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from "axios";
+import { useMediaQuery } from "react-responsive";
 
 export default function Login() {
+    const isPc = useMediaQuery({
+        query: "(min-width:769px)"
+    });
 
     const [formData, setFormData] = useState({
         id: "",
         pwd: "",
-      });
-    
-      const { id, pwd } = formData;
-    
-      const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    });
+
+    const { id, pwd } = formData;
+
+    const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target; // Use 'name' to identify the field
         setFormData({
-          ...formData,
-          [name]: value,
+            ...formData,
+            [name]: value,
         });
-      };
+    };
 
     const login = (e: React.MouseEvent) => {
         console.log(formData)
         e.preventDefault(); // Prevent the default form submission behavior.
-        
 
-            // 공백 여부 검사
-    if (id.trim() === '' || pwd.trim() === '' ) {
-        alert('빈칸을 모두 채워주세요.'); // 공백인 경우 알람 창을 띄움.
-        return; 
-    } 
-        
+
+        // 공백 여부 검사
+        if (id.trim() === '' || pwd.trim() === '') {
+            alert('빈칸을 모두 채워주세요.'); // 공백인 경우 알람 창을 띄움.
+            return;
+        }
+
         const data = {
-            id : formData.id,
-            password : formData.pwd,
-            
+            id: formData.id,
+            password: formData.pwd,
+
         };
         const config = {};
         axios
             .post(`http://bookstore24.shop/auth/login`, data, config)
             .then((response) => {
-            console.log(`Response : ${response}`);
-            console.log(`Response : ${data}`);
+                console.log(`Response : ${response}`);
+                console.log(`Response : ${data}`);
             })
             .catch((error) => {
                 console.log(error)
-            console.log('Error:', error.response.data);
+                console.log('Error:', error.response.data);
             });
-        
-        };
-    return(
-        <Wrapper>
 
-            <LoginContainer>
-                <Title>
-                    <TitleFont>
-                        Neo Trinity
-                    </TitleFont>
-                </Title>
+    };
+    if (isPc) {
+        return (
+            <Wrapper>
 
-                <InputContainer>
+                <LoginContainer>
+                    <Title>
+                        <TitleFont>
+                            Neo Trinity
+                        </TitleFont>
+                    </Title>
 
-                <form >
+                    <InputContainer>
 
-                    <Input 
-                        placeholder='아이디를 입력해주세요' 
-                        name="id" 
-                        value={id}
-                        onChange={onInputChange}
-                        />
-                    
-                    <Input 
-                        placeholder='비밀번호를 입력해주세요'
-                        name="pwd"
-                        value={pwd}
-                        onChange={onInputChange}
-                        type="password"
-                        />
-                </form>
+                        <form >
 
-                </InputContainer>
+                            <Input
+                                placeholder='아이디를 입력해주세요'
+                                name="id"
+                                value={id}
+                                onChange={onInputChange}
+                            />
 
-                {/* <MenuContainer>
+                            <Input
+                                placeholder='비밀번호를 입력해주세요'
+                                name="pwd"
+                                value={pwd}
+                                onChange={onInputChange}
+                                type="password"
+                            />
+                        </form>
+
+                    </InputContainer>
+
+                    {/* <MenuContainer>
                     <Menu>
                         <StyledLink to='/signup' >
                             회원 가입 
@@ -101,25 +104,78 @@ export default function Login() {
                     </Menu>
                 </MenuContainer> */}
 
-                <ButtonContainer> 
+                    <ButtonContainer>
+                        <SubmitButton onClick={login} >
+                            로그인하기
+                        </SubmitButton>
+                    </ButtonContainer>
+
+                </LoginContainer>
+
+            </Wrapper>
+        )
+    }
+    else {
+        return (
+            <MobileContainer>
+                <Logo>Place for logo</Logo>
+
+                <Title>
+                    <TitleFont>
+                        Neo Trinity
+                    </TitleFont>
+                </Title>
+
+                <InputContainer>
+
+                    <form >
+                        <Input
+                            placeholder='아이디를 입력해주세요'
+                            name="id"
+                            value={id}
+                            onChange={onInputChange}
+                        />
+                        <Input
+                            placeholder='비밀번호를 입력해주세요'
+                            name="pwd"
+                            value={pwd}
+                            onChange={onInputChange}
+                            type="password"
+                        />
+                    </form>
+
+                </InputContainer>
+
+                <ButtonContainer>
                     <SubmitButton onClick={login} >
                         로그인하기
                     </SubmitButton>
                 </ButtonContainer>
-
-            </LoginContainer>
-
-        </Wrapper>
-    )
+            </MobileContainer>
+        )
+    }
 }
 
 //styled-component 
-const StyledLink = styled(Link)`
+const MobileContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    //justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 20vh;
+`;
 
-
+const Logo = styled.div`
+    width: 40vw;
+    height: 40vw;
+    display: flex;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    align-items: center;
 `
-    
-
 const Wrapper = styled.div`
 
 `
