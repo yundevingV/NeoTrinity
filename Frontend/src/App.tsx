@@ -23,7 +23,7 @@ export default function App() {
 
       <Routes>
 
-        <Route path='/login' element = {<Login />} />
+        <Route path='/login' element = {<SideBar content={<Login />} />} />
         <Route path='/signUp' element = {<SideBar content={<SignUp />} />} />
         <Route path='/' element = {<SideBar content={<MainPage/>}/>} />
 

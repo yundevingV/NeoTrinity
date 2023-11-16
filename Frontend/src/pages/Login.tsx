@@ -1,200 +1,120 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-import { Link } from 'react-router-dom';
-import axios from "axios";
 import { useMediaQuery } from "react-responsive";
+import axios from "axios";
 
-export default function Login() {
-    const isPc = useMediaQuery({
-        query: "(min-width:769px)"
-    });
-
-    const [formData, setFormData] = useState({
-        id: "",
-        pwd: "",
-    });
-
-    const { id, pwd } = formData;
-
-    const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target; // Use 'name' to identify the field
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
-
-    const login = (e: React.MouseEvent) => {
-        console.log(formData)
-        e.preventDefault(); // Prevent the default form submission behavior.
-
-
-        // 공백 여부 검사
-        if (id.trim() === '' || pwd.trim() === '') {
-            alert('빈칸을 모두 채워주세요.'); // 공백인 경우 알람 창을 띄움.
-            return;
-        }
-
-        const data = {
-            id: formData.id,
-            password: formData.pwd,
-
-        };
-        const config = {};
-        axios
-            .post(`http://bookstore24.shop/auth/login`, data, config)
-            .then((response) => {
-                console.log(`Response : ${response}`);
-                console.log(`Response : ${data}`);
-            })
-            .catch((error) => {
-                console.log(error)
-                console.log('Error:', error.response.data);
-            });
-
-    };
-    if (isPc) {
-        return (
-            <Wrapper>
-
-                <LoginContainer>
-                    <Title>
-                        <TitleFont>
-                            Neo Trinity
-                        </TitleFont>
-                    </Title>
-
-                    <InputContainer>
-
-                        <form >
-
-                            <Input
-                                placeholder='아이디를 입력해주세요'
-                                name="id"
-                                value={id}
-                                onChange={onInputChange}
-                            />
-
-                            <Input
-                                placeholder='비밀번호를 입력해주세요'
-                                name="pwd"
-                                value={pwd}
-                                onChange={onInputChange}
-                                type="password"
-                            />
-                        </form>
-
-                    </InputContainer>
-
-                    {/* <MenuContainer>
-                    <Menu>
-                        <StyledLink to='/signup' >
-                            회원 가입 
-                        </StyledLink>
-                    </Menu>
-                    <Menu>
-                        <StyledLink to='/findid'>
-                            아이디찾기
-                        </StyledLink>
-                    </Menu>
-                    <Menu> 
-                        <StyledLink to='/findpwd'>
-                            비밀번호찾기
-                        </StyledLink>
-                    </Menu>
-                </MenuContainer> */}
-
-                    <ButtonContainer>
-                        <SubmitButton onClick={login} >
-                            로그인하기
-                        </SubmitButton>
-                    </ButtonContainer>
-
-                </LoginContainer>
-
-            </Wrapper>
-        )
-    }
-    else {
-        return (
-            <MobileContainer>
-                <Logo>Place for logo</Logo>
-
-                <Title>
-                    <TitleFont>
-                        Neo Trinity
-                    </TitleFont>
-                </Title>
-
-                <InputContainer>
-
-                    <form >
-                        <Input
-                            placeholder='아이디를 입력해주세요'
-                            name="id"
-                            value={id}
-                            onChange={onInputChange}
-                        />
-                        <Input
-                            placeholder='비밀번호를 입력해주세요'
-                            name="pwd"
-                            value={pwd}
-                            onChange={onInputChange}
-                            type="password"
-                        />
-                    </form>
-
-                </InputContainer>
-
-                <ButtonContainer>
-                    <SubmitButton onClick={login} >
-                        로그인하기
-                    </SubmitButton>
-                </ButtonContainer>
-            </MobileContainer>
-        )
-    }
+interface FormData {
+  id: string;
+  pwd: string;
 }
 
-//styled-component 
-const MobileContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    //justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    padding-top: 20vh;
-`;
+interface StyledContainerProps {
+  isPc: boolean;
+}
 
-const Logo = styled.div`
-    width: 40vw;
-    height: 40vw;
-    display: flex;
-    border-radius: 50%;
-    background-color: black;
-    color: white;
-    align-items: center;
-`
+export default function Login() {
+  const isPc = useMediaQuery({
+    query: "(min-width:769px)"  
+  });
+
+  const [formData, setFormData] = useState<FormData>({
+    id: "",
+    pwd: "",
+  });
+
+  const { id, pwd } = formData;
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const login = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    if (id.trim() === "" || pwd.trim() === "") {
+      alert("빈칸을 모두 채워주세요.");
+      return;
+    }
+
+    const data = {
+      id: formData.id,
+      password: formData.pwd,
+    };
+
+    const config = {};
+    axios
+      .post(`http://bookstore24.shop/auth/login`, data, config)
+      .then((response) => {
+        console.log(`Response : ${response}`);
+        console.log(`Response : ${data}`);
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("Error:", error.response.data);
+      });
+  };
+
+  return (
+    <Wrapper>
+      <StyledContainer isPc={isPc}>
+            <Title>
+          <TitleFont>Neo Trinity</TitleFont>
+        </Title>
+        <InputContainer>
+          <form>
+            <Input
+              placeholder="아이디를 입력해주세요"
+              name="id"
+              value={id}
+              onChange={onInputChange}
+            />
+            <Input
+              placeholder="비밀번호를 입력해주세요"
+              name="pwd"
+              value={pwd}
+              onChange={onInputChange}
+              type="password"
+            />
+          </form>
+        </InputContainer>
+        <ButtonContainer>
+          <SubmitButton onClick={login}>로그인하기</SubmitButton>
+        </ButtonContainer>
+      </StyledContainer>
+    </Wrapper>
+  );
+}
+
+//styled-component
+const StyledContainer = styled.div<StyledContainerProps>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding-top: ${({ isPc }) => (isPc ? "20vh" : "0")};
+
+  ${({ isPc }) =>
+    isPc &&
+    `
+    width: 600px;
+    font-family: arial;
+    font-size: 24px;
+    margin: 0 auto;
+    padding: 10px;
+    font-family: tway, sans-serif, Arial;
+    position: relative;
+    top: 5vh;
+  `}
+`;
 const Wrapper = styled.div`
 
 `
 
-const LoginContainer = styled.div`
-width : 600px;
-
-font-family: arial;
-font-size: 24px;
-
-margin: 0 auto;
-padding : 10px;
-
-
-font-family: tway, sans-serif, Arial;
-
-position : relative;
-top:5vh;
-`
 
 const Title = styled.div`
 margin: 0 auto;
