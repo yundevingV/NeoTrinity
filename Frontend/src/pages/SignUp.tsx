@@ -1,4 +1,5 @@
 import React,{useState , useEffect} from "react";
+import useSignUp from '../components/signup/hooks/useSignUp'; 
 
 import { styled ,css } from "styled-components";
 
@@ -6,14 +7,14 @@ import axios from "axios";
 
 
 export default function SignUp(){
-
+    const {signUp} = useSignUp();
     const [formData, setFormData] = useState({
       email : "",
-      pwd : "",
-      userName : "",
+      password : "",
+      username : "",
     });
   
-    const { email, pwd, userName } = formData;
+    const { email, password, username } = formData;
   
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
@@ -23,34 +24,14 @@ export default function SignUp(){
       });
     };
 
-    const signUp = (e: React.MouseEvent) => {
-        e.preventDefault(); // Prevent the default form submission behavior.
-        
+    const handleSignUp = (e: React.MouseEvent) => {
+        e.preventDefault();
 
-            // 공백 여부 검사
-    if (email.trim() === '' || pwd.trim() === '' || userName.trim() === '') {
-        alert('빈칸을 모두 채워주세요.'); // 공백인 경우 알람 창을 띄움.
-        return; 
-    } 
-        
-        const data = {
-            email: email,
-            pwd : pwd,
-            username: userName,
-        };
-        const config = {};
-        axios
-            .post(`http://bookstore24.shop/auth/register`, data, config)
-            .then((response) => {
-            console.log(`Response : ${response}`);
-            console.log(`Response : ${data}`);
-            })
-            .catch((error) => {
-                console.log(error)
-            console.log('Error:', error.response.data);
-            });
-        
-        };
+    
+        signUp({ email, password, username });
+
+      };
+    
     return(
         <Wrapper>
 
@@ -83,8 +64,8 @@ export default function SignUp(){
 
                         <Input 
                             placeholder='비밀번호를 입력해주세요' 
-                            name="pwd" 
-                            value={pwd}
+                            name="password" 
+                            value={password}
                             onChange={onInputChange} />
 
 
@@ -101,15 +82,15 @@ export default function SignUp(){
 
                         <Input 
                             placeholder='이름을 입력해주세요'
-                            name="userName" 
-                            value={userName}
+                            name="username" 
+                            value={username}
                             onChange={onInputChange} />
                     </Form>
                 </InputContainer>
                 
                 <ButtonContainer>
 
-                    <SubmitButton onClick={signUp}>
+                    <SubmitButton onClick={handleSignUp}>
                         제출하기
                     </SubmitButton>
                     
