@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import axios from "axios";
+import useLogin from "../components/login/hooks/useLogin";
 
 interface FormData {
-  id: string;
-  pwd: string;
+  email: string;
+  password: string;
 }
 
 interface StyledContainerProps {
@@ -16,13 +17,15 @@ export default function Login() {
   const isPc = useMediaQuery({
     query: "(min-width:769px)"  
   });
+  
+  const {login} = useLogin();
 
   const [formData, setFormData] = useState<FormData>({
-    id: "",
-    pwd: "",
+    email: "",
+    password: "",
   });
 
-  const { id, pwd } = formData;
+  const { email, password } = formData;
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -32,30 +35,11 @@ export default function Login() {
     });
   };
 
-  const login = (e: React.MouseEvent) => {
+
+  const handleLogin = (e: React.MouseEvent) => {
     e.preventDefault();
+    login({ email, password });
 
-    if (id.trim() === "" || pwd.trim() === "") {
-      alert("빈칸을 모두 채워주세요.");
-      return;
-    }
-
-    const data = {
-      id: formData.id,
-      password: formData.pwd,
-    };
-
-    const config = {};
-    axios
-      .post(`http://bookstore24.shop/auth/login`, data, config)
-      .then((response) => {
-        console.log(`Response : ${response}`);
-        console.log(`Response : ${data}`);
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log("Error:", error.response.data);
-      });
   };
 
   return (
@@ -68,21 +52,21 @@ export default function Login() {
           <form>
             <Input
               placeholder="아이디를 입력해주세요"
-              name="id"
-              value={id}
+              name="email"
+              value={email}
               onChange={onInputChange}
             />
             <Input
               placeholder="비밀번호를 입력해주세요"
-              name="pwd"
-              value={pwd}
+              name="password"
+              value={password}
               onChange={onInputChange}
               type="password"
             />
           </form>
         </InputContainer>
         <ButtonContainer>
-          <SubmitButton onClick={login}>로그인하기</SubmitButton>
+          <SubmitButton onClick={handleLogin}>로그인하기</SubmitButton>
         </ButtonContainer>
       </StyledContainer>
     </Wrapper>
