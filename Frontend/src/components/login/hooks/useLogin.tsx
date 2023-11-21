@@ -1,25 +1,24 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 
-interface SignUpData {
+interface LoginData {
   email: string;
   password: string;
-  username: string;
 }
 
-export default function useSignUp(){
+export default function useLogin(){
   
   const navigate = useNavigate();
 
-  const signUp = async (data: SignUpData) => {
+  const login = async (data: LoginData) => {
     try {
-      if (data.email.trim() === '' || data.password.trim() === '' || data.username.trim() === '') {
+      if (data.email.trim() === '' || data.password.trim() === '' ) {
         alert('빈칸을 채워주세요 !'); 
         return;
       }
 
-      const response = await axios.post(`https://neotrinity.kro.kr/auth/register`, data);
-      navigate('/login');
+      const response = await axios.post(`https://neotrinity.kro.kr/auth/login`, data);
+      navigate('/');
       console.log(response)
 
     } catch (error) {
@@ -29,6 +28,6 @@ export default function useSignUp(){
     }
   };
 
-  return { signUp};
+  return { login};
 };
 
