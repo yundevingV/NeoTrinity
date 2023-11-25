@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import MainPage from './pages/MainPage'
 import Group from './pages/Group/Group'
+import GroupAdd from './pages/Group/GroupAdd';
 import GroupNotice from './pages/Group/GroupNotice'
 import GroupNoticeDetail from './pages/Group/GroupNoticeDetail';
 
@@ -32,6 +33,8 @@ export default function App() {
 
         {/* group */}
         <Route path='/group' element = {<SideBar content={<Group />} />} />
+        <Route path='/group/add' element = {<GroupAdd />} />
+
         <Route path='/group/notice' element = {<GroupNotice />} />
         <Route path='/group/notice/detail/*' element = {<GroupNoticeDetail />} />
         {/* <Route path='/group/vote/' element = {<GroupVote />} />
