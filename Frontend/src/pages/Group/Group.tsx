@@ -1,11 +1,15 @@
+import axios from "axios";
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 
 import { styled } from "styled-components";
+import FetchGroupBoard from "../../components/group/model/FetchGroupBoard";
 
 export default function Group() {
-    console.log(window.innerWidth)
+    let {data} = FetchGroupBoard();
+    console.log(data);
+   
     return (
         <Container>
 
