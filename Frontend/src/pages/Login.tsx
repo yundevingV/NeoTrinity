@@ -14,9 +14,6 @@ interface StyledContainerProps {
 }
 
 export default function Login() {
-  const isPc = useMediaQuery({
-    query: "(min-width:769px)"  
-  });
   
   const {login} = useLogin();
 
@@ -44,7 +41,7 @@ export default function Login() {
 
   return (
     <Wrapper>
-      <StyledContainer isPc={isPc}>
+      <StyledContainer>
             <Title>
           <TitleFont>Neo Trinity</TitleFont>
         </Title>
@@ -74,26 +71,14 @@ export default function Login() {
 }
 
 //styled-component
-const StyledContainer = styled.div<StyledContainerProps>`
+const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  padding-top: ${({ isPc }) => (isPc ? "20vh" : "0")};
+  padding-top: 20vh;
 
-  ${({ isPc }) =>
-    isPc &&
-    `
-    width: 600px;
-    font-family: arial;
-    font-size: 24px;
-    margin: 0 auto;
-    padding: 10px;
-    font-family: tway, sans-serif, Arial;
-    position: relative;
-    top: 5vh;
-  `}
 `;
 const Wrapper = styled.div`
 

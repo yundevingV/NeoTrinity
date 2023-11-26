@@ -11,6 +11,16 @@ height : auto;
 
 padding : 20px;
 border-radius : 12px;
+
+@media (max-width: 428px){
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    padding: 0;
+    align-items: center;
+}
 `
 
 const ProfileImg = styled.div`
@@ -22,6 +32,12 @@ border-radius : 20px;
 margin : 0 auto;
 padding  : 20px;
 
+@media (max-width: 428px){
+    margin: 0;
+    width: auto;
+    height: auto;
+}
+
 div {
     margin : auto;
 
@@ -30,7 +46,14 @@ div {
     height : 100%;
 
     border-radius : 12px;
+
+    @media (max-width: 428px){
+        width: 90vw;
+        height: 90vw;
+        margin: 0;
+    }
 }
+
 `
 
 const ProfileInfo = styled.div`
@@ -46,10 +69,14 @@ background : #ffff;
 display : flex;
 flex-direction : column;
 
+@media (max-width: 428px){
+        width: 90vw;
+        margin: 0;
+    }
 `
 
-export default function Profile(){
-    return(
+export default function Profile() {
+    return (
         <Container>
             <ProfileImg>
                 <div>
