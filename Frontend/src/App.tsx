@@ -23,17 +23,17 @@ export default function App() {
 
       <Routes>
 
-        <Route path='/login' element = {<SideBar content={<Login />} />} />
-        <Route path='/signUp' element = {<SideBar content={<SignUp />} />} />
+        <Route path='/login' element = {<Login/>} />
+        <Route path='/signUp' element = {<SignUp/>} />
         <Route path='/' element = {<SideBar content={<MainPage/>}/>} />
 
         {/* profile */}
-        <Route path='/profile' element = {<Profile />} />
+        <Route path='/profile' element = {<SideBar content={<Profile/>}/>} />
 
         {/* group */}
         <Route path='/group' element = {<SideBar content={<Group />} />} />
-        <Route path='/group/notice' element = {<GroupNotice />} />
-        <Route path='/group/notice/detail/*' element = {<GroupNoticeDetail />} />
+        <Route path='/group/notice' element = {<SideBar content={<GroupNotice />} />} />
+        <Route path='/group/notice/detail/*' element = {<SideBar content={<GroupNoticeDetail />} />} />
         {/* <Route path='/group/vote/' element = {<GroupVote />} />
         <Route path='/group/vote/detail/*' element = {<GroupVoteDetail />} /> */}
 

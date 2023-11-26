@@ -7,6 +7,10 @@ width : 70vw;
 
 margin : 0 auto;
 
+@media (max-width: 428px){
+    width: 100vw;
+}
+
 h1 {
     margin : 30px 6vw;
 
@@ -24,6 +28,7 @@ width : 70vw;
 display : flex;
 flex-direction : column;
 justify-content : center;
+
 `
 
 
@@ -39,6 +44,11 @@ border-radius : 12px;
 
 display : flex;
 align-items : center;
+
+@media (max-width: 428px){
+    width: 78vw;
+    margin-left: 6vw;
+}
 
 `
 
