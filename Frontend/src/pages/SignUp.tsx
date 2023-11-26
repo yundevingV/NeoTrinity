@@ -124,6 +124,12 @@ top:5vh;
 display : flex;
 flex-direction : column;
 justify-content: space-around;
+
+@media (max-width: 428px){
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
 `
 
 const InputContainer = styled.div `

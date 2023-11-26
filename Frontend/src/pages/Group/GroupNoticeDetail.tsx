@@ -7,6 +7,10 @@ width : 70vw;
 
 margin : 0 auto;
 
+@media (max-width: 428px){
+    width: 100vw;
+}
+
 h1 {
     margin : 30px 6vw;
 
@@ -24,6 +28,9 @@ width : 70vw;
 display : flex;
 flex-direction : column;
 justify-content : center;
+@media (max-width: 428px){
+ width   : 100vw;
+}
 `
 
 
@@ -41,6 +48,10 @@ display : flex;
 align-items : center;
 text-align: left; /* Add this line to align text to the left */
 
+@media (max-width: 428px){
+    width: 84vw;
+}
+
 `
 const Comment = styled.div`
 width : 70%;
@@ -52,6 +63,12 @@ border-radius : 12px;
 
 display : flex;
 
+@media (max-width: 428px){
+    width: 84vw;
+    height: 6vh;
+    align-items: center;
+}
+
 `
 
 const Avator = styled.div`
@@ -60,6 +77,11 @@ img{
     height : 70px;
 
     border-radius : 8px;
+
+    @media screen and (max-width: 428px) {
+        width: 50px;
+        height: 50px;
+    }
 }
 `
 const Right = styled.div`

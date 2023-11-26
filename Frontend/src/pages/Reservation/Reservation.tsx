@@ -12,11 +12,21 @@ display : flex;
 justify-content : start;    
 flex-direction : column;
 
+@media screen and (max-width: 428px) {
+    width: 100vw;
+    margin: 0;
+    align-items: start;
+    padding-left: 6vw;
+}
 `
 const TopContainer = styled.div`
 display : flex; 
 justify-content : space-between;
 align-items : center;
+
+@media screen and (max-width: 428px) {
+    width: 84vw;
+}
 `
 const Date = styled.div`
 background : #e2e2e2;
@@ -27,6 +37,8 @@ width : 20vw;
 height : 30px;
 
 border-radius : 8px;
+
+
 
 `
 const SearchContainer = styled.div`
@@ -39,6 +51,10 @@ width : 70vw;
 height : 15px;
 
 padding : 10px;
+
+@media screen and (max-width: 500px) {
+    width: 80vw;
+}
 `
 
 const ReservationAvaliableContainer = styled.div`
@@ -52,6 +68,11 @@ background : #eeeeee;
 border-radius : 8px;
 
 margin : 10px auto;
+
+@media screen and (max-width: 428px){
+    width: 86vw;
+    margin-left: 0;
+}
 `
 
 
@@ -67,7 +88,9 @@ text-align : left;
 .red {
     color : red;
 }
-
+@media screen and (max-width: 428px) {
+    
+}
 
 `
 const ReservationUnavaliableContainer = styled.div`
@@ -81,6 +104,11 @@ background : #e2e2e2;
 border-radius : 8px;
 
 margin : 10px auto ;
+
+@media screen and (max-width: 428px){
+    width: 86vw;
+    margin-left: 0;
+}
 `
 
 const Hr = styled.hr`
