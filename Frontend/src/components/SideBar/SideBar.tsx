@@ -24,10 +24,12 @@ function SideBar({ content }: { content: ReactNode }) {
   }
 
   const items: { name: string; path: string }[] = [
-    { name: 'Main', path: '/main' },
+    { name: 'Main', path: '/' },
+    { name: 'Group', path: '/group' },
     { name: 'Reservation', path: '/reservation' }
-  ];
 
+  ];
+  
 
   return (
     <Container>
@@ -46,9 +48,14 @@ function SideBar({ content }: { content: ReactNode }) {
         </ProfileContainer>
         {items.map((item, i) => {
 
-          if (item.name == 'Main') {
+          if (item.name === 'Main') {
             return (
               <Menu to={item.path} key={i} style={{ color: 'purple' }}>{item.name}</Menu>
+            )
+          }
+          else if (item.name === 'group'){
+            return (
+              <Menu to={item.path} key={i} >{item.name}</Menu>
             )
           }
           else {
@@ -56,6 +63,7 @@ function SideBar({ content }: { content: ReactNode }) {
               <Menu to={item.path} key={i}>{item.name}</Menu>
             )
           };
+          
         })}
       </Side>
       <Content>
