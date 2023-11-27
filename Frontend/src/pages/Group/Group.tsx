@@ -85,7 +85,7 @@ margin : 0 auto;
 h1 {
     margin : 30px 6vw;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (max-width: 1200px) {
         margin : 30px 10vw;
 
 }
@@ -93,7 +93,7 @@ h1 {
     justify-content : start;    
 }
 
-@media (min-width:428px) {
+@media (max-width:428px) {
     margin: 0;
     
 }
@@ -102,7 +102,7 @@ h1 {
 const GroupContainer = styled.div`
 display : flex; 
 justify-content : space-around;
-@media (min-width:428px) {
+@media (max-width:428px) {
     width: 84vw;
     height: 42vw;
     padding-left: 8%;
@@ -121,7 +121,7 @@ img  {
     height : 150px;
 
     border-radius : 8px;
-    @media (min-width: 428px){
+    @media (max-width: 428px){
         width: 42vw;
         height: 42vw;
     }
@@ -138,7 +138,7 @@ border-radius : 12px;
 
 background : #e2e2e2;
 
-@media (min-width: 428px){
+@media (max-width: 428px){
     //width: 42vw;
     height: 42vw;
 }
@@ -156,7 +156,7 @@ border-radius : 8px;
 
 margin : 0 auto;
 
-@media (min-width: 428px){
+@media (max-width: 428px){
     margin: 6vw;
     width: 84vw;
 }
@@ -179,7 +179,7 @@ justify-content : space-around;
 span {
     margin-bottom : 10px;
 }
-@media (min-width: 428px){
+@media (max-width: 428px){
     margin-left: 8vw;
     width: 84vw;
 }
@@ -204,7 +204,7 @@ justify-content : start;
 
 padding : 10px;
 
-@media (min-width: 428px){
+@media (max-width: 428px){
     width: 42vw;
     padding: 10px 0px 0px 0px;
 }
@@ -223,7 +223,7 @@ justify-content : start;
 
 padding : 10px;
 
-@media (min-width: 428px){
+@media (max-width: 428px){
     width: 42vw;
     padding: 10px 0px 0px 0px;
     margin-left: 2vw;
