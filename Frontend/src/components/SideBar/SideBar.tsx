@@ -1,8 +1,9 @@
 import React, { ReactNode, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useMediaQuery } from "react-responsive";
+
+import NavLink from "./NavLink";
 
 function SideBar({ content }: { content: ReactNode }) {
   //toggle sidebar for mobile
@@ -23,14 +24,6 @@ function SideBar({ content }: { content: ReactNode }) {
     }
   }
 
-  const items: { name: string; path: string }[] = [
-    { name: 'Main', path: '/' },
-    { name: 'Group', path: '/group' },
-    { name: 'Reservation', path: '/reservation' }
-
-  ];
-  
-
   return (
     <Container>
       <TopBar>
@@ -46,25 +39,11 @@ function SideBar({ content }: { content: ReactNode }) {
           <ProfilePicture></ProfilePicture>
           <Introduction>유지호<br></br><br></br>2018216216<br></br></Introduction>
         </ProfileContainer>
-        {items.map((item, i) => {
 
-          if (item.name === 'Main') {
-            return (
-              <Menu to={item.path} key={i} style={{ color: 'purple' }}>{item.name}</Menu>
-            )
-          }
-          else if (item.name === 'group'){
-            return (
-              <Menu to={item.path} key={i} >{item.name}</Menu>
-            )
-          }
-          else {
-            return (
-              <Menu to={item.path} key={i}>{item.name}</Menu>
-            )
-          };
-          
-        })}
+      <NavLink url="/" label="Main" />
+      <NavLink url="/group" label="Group" />
+      <NavLink url="/reservation" label="Reservation" />
+
       </Side>
       <Content>
         {content}
@@ -144,15 +123,6 @@ const Content = styled.div`
     margin-top: 60px;
     padding: 0;
   }
-`;
-
-const Menu = styled(Link)`
-  color: white;
-  font-size: 30px;
-  text-decoration: none;
-  margin-top: 20px;
-  margin-left: 20px;
-  font-weight: bold;
 `;
 
 const ProfileContainer = styled.div`
