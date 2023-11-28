@@ -14,24 +14,33 @@ width : 70vw;
 
 margin : 0 auto;
 
-h1 {
-    margin : 30px 6vw;
 
-    @media screen and (min-width: 1200px) {
-        margin : 30px 10vw;
+display : flex; 
+flex-direction : column;
+justify-content : start;    
 
-}
-    display : flex; 
-    justify-content : start;    
-}
 `
+
+const ContentContainer = styled.div`
+margin : 20px;
+`
+interface InputHeightProps {
+  height: string;
+}
+const Input = styled.input<InputHeightProps>`
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  height: ${(props) => props.height};
+  /* Add other styling as needed */
+`;
 
 export default function GroupAdd(){
     const {addGroupBoard} = AddGroupBoard();
 
     const [formData, setFormData] = useState<FormData>({
-        title: "ㄴ",
-        description: "ㄴ",
+        title: "엽떡",
+        description: "하루종일 엽떡 먹는지호",
         status : "public",
       });
     
@@ -48,14 +57,27 @@ export default function GroupAdd(){
     const addHandler = () => {
         addGroupBoard({title,description,status});
     }
+
+    
     return(
         <Container>
 
-            <h1>
-                GDSC 
-            </h1>
 
-            <h1>공지</h1>
+            <h3>공지 작성하기</h3>
+
+            <ContentContainer>
+              <Input
+                height='50px'
+                placeholder="제목을 입력해주세요" />
+
+            </ContentContainer>
+
+            <ContentContainer>
+              <Input
+                height='200px'
+                placeholder="내용을 입력해주세요" />
+                
+            </ContentContainer>
             <button onClick={addHandler}>
                 작성하기
             </button>

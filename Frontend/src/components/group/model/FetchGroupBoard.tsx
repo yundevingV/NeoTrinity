@@ -11,12 +11,16 @@ interface FetchGroupBoardData {
 
 export default function FetchGroupBoard() {
 
+    let token = sessionStorage.getItem('token');
+
     const [data, setData] = useState<FetchGroupBoardData[]>();
 
     useEffect(() => {
         axios
             .get(`https://neotrinity.kro.kr/boards`, {
-
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                  },
             })
             .then((response) => {
                 console.log(response.data);
