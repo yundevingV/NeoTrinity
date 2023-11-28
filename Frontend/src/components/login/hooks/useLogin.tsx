@@ -17,7 +17,7 @@ export default function useLogin(){
         return;
       }
 
-      const response = await axios.post(`https://neotrinity.kro.kr/auth/login`, data);
+      const response = await axios.post(`https://neotrinity.kro.kr/auth/signin`, data);
       navigate('/');
       console.log(response)
 
