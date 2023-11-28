@@ -29,16 +29,14 @@ align-items : center;
 }
 `
 const Date = styled.div`
-background : #e2e2e2;
 
 padding : 10px;
 
 width : 20vw;
 height : 30px;
 
-border-radius : 8px;
-
-
+border-radius : 15px;
+border : 1px solid #e2e2e2;
 
 `
 const SearchContainer = styled.div`
@@ -57,13 +55,14 @@ padding : 10px;
 }
 `
 
-const ReservationAvaliableContainer = styled.div`
+const ReservationContainer = styled.div`
 width : 50vw;
 display : flex;
 flex-direction : column;
 justify-content : center;
 
-background : #eeeeee;
+border-radius : 15px;
+border : 1px solid #e2e2e2;
 
 border-radius : 8px;
 
@@ -93,23 +92,6 @@ text-align : left;
 }
 
 `
-const ReservationUnavaliableContainer = styled.div`
-width : 50vw;
-display : flex;
-flex-direction : column;
-justify-content : center;
-
-background : #e2e2e2;
-
-border-radius : 8px;
-
-margin : 10px auto ;
-
-@media screen and (max-width: 428px){
-    width: 86vw;
-    margin-left: 0;
-}
-`
 
 const Hr = styled.hr`
 width : 90%;
@@ -135,9 +117,9 @@ export default function Reservation(){
                 
             </SearchContainer>
 
-            <h1>예약가능 물품 </h1>
 
-            <ReservationAvaliableContainer>
+            <ReservationContainer>
+             <h1>예약가능 물품 </h1>
 
                 <ReservationItem>
                     
@@ -154,11 +136,11 @@ export default function Reservation(){
                     <p className='green'>대여가능</p>
                     <p>다솔관 컴퓨터공학과 사무실</p>
                 </ReservationItem>
-            </ReservationAvaliableContainer>
+            </ReservationContainer>
 
+            <ReservationContainer>
             <h1>예약불가능 물품 </h1>
 
-            <ReservationUnavaliableContainer>
             <ReservationItem>
                     
                     <h3>노트북</h3>
@@ -166,7 +148,7 @@ export default function Reservation(){
                     <p>다솔관 컴퓨터공학과 사무실</p>
                 </ReservationItem>
             
-            </ReservationUnavaliableContainer>
+            </ReservationContainer>
            
 
         </Container>
