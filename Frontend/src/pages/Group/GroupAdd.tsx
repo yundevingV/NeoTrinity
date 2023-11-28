@@ -9,20 +9,40 @@ interface FormData {
     status : string,
   }
 
+interface OnclickProps{
+  onClose : () => void;
+}
+
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+`;
+
 const Container = styled.div`
-width : 70vw;
+width: 600px;
+height: 600px;
 
-margin : 0 auto;
+margin : 20px auto;
 
-
-display : flex; 
-flex-direction : column;
-justify-content : start;    
+background-color: #FCFCFC;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 
 `
 
 const ContentContainer = styled.div`
-margin : 20px;
+
+margin : 30px;
+
+width : 80%;
+
+
 `
 interface InputHeightProps {
   height: string;
@@ -35,12 +55,32 @@ const Input = styled.input<InputHeightProps>`
   /* Add other styling as needed */
 `;
 
-export default function GroupAdd(){
+const ButtonContainer = styled.div`
+
+`
+interface ButtonProps {
+  color : string;
+  background : string;
+}
+const Button = styled.button<ButtonProps>`
+  width : 100px;
+  height : 40px;
+  margin-right : 20px;
+
+  background: ${(props) => props.background};
+  border : 0px;
+  border-radius : 8px;
+
+  color : ${(props) => props.color};
+
+`
+
+export default function GroupAdd({onClose} : OnclickProps){
     const {addGroupBoard} = AddGroupBoard();
 
     const [formData, setFormData] = useState<FormData>({
-        title: "엽떡",
-        description: "하루종일 엽떡 먹는지호",
+        title: "",
+        description: "",
         status : "public",
       });
     
@@ -56,33 +96,44 @@ export default function GroupAdd(){
 
     const addHandler = () => {
         addGroupBoard({title,description,status});
+        onClose();
     }
 
     
     return(
+      <ModalBackground>
         <Container>
-
-
-            <h3>공지 작성하기</h3>
-
+            <h2>공지 작성하기</h2>
             <ContentContainer>
               <Input
                 height='50px'
-                placeholder="제목을 입력해주세요" />
+                placeholder="제목을 입력해주세요" 
+                name='title'
+                value={title}
+                onChange={onInputChange}
+                />
 
             </ContentContainer>
 
             <ContentContainer>
               <Input
                 height='200px'
-                placeholder="내용을 입력해주세요" />
+                placeholder="내용을 입력해주세요"
+                name='description'
+                value={description}
+                onChange={onInputChange}
+
+                />
                 
             </ContentContainer>
-            <button onClick={addHandler}>
+            <ButtonContainer>
+              <Button background='#f34747' color='#000' onClick={onClose}>
+                취소하기
+              </Button>
+              <Button background='#4d4df5' color='#fff' onClick={addHandler}>
                 작성하기
-            </button>
-            
-
-
+              </Button>
+            </ButtonContainer>
         </Container>
+      </ModalBackground>
   )}

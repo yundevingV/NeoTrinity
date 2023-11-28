@@ -33,9 +33,7 @@ export default function App() {
 
         {/* group */}
         <Route path='/group' element = {<SideBar content={<Group />} />} />
-        <Route path='/group/notice/add' element = {<GroupAdd />} />
 
-       
         <Route path='/group/notice' element = {<SideBar content={<GroupNotice />} />} />
         <Route path='/group/notice/detail/*' element = {<SideBar content={<GroupNoticeDetail />} />} />
         {/* <Route path='/group/vote/' element = {<GroupVote />} />
