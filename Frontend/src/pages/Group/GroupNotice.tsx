@@ -1,6 +1,8 @@
 import React from "react";
 
 import { styled } from "styled-components";
+import FetchGroupBoard from "../../components/group/model/FetchGroupBoard";
+import GroupBoardItems from "../../components/group/view/GroupBoardItem";
 
 const Container = styled.div`
 width : 70vw;
@@ -12,48 +14,34 @@ margin : 0 auto;
 }
 
 h1 {
-    margin : 30px 6vw;
-
-    @media screen and (min-width: 1200px) {
-        margin : 30px 10vw;
-
-}
+    
     display : flex; 
     justify-content : start;    
 }
 `
 
 const NoticeContainer = styled.div`
-width : 70vw;
+width : 60vw;
+
 display : flex;
 flex-direction : column;
 justify-content : center;
 
+padding : 0px 20px;
+
+background : #fff;
+border : 1px solid #e2e2e2;
+border-radius : 15px;
+
+margin : 0 auto;
 `
 
 
-const NoticeItem = styled.div`
-width : 70%;
-height : 50px;
-
-margin : 5px auto;
-padding : 0px 15px;
-
-background : #e2e2e2;
-border-radius : 12px;
-
-display : flex;
-align-items : center;
-
-@media (max-width: 428px){
-    width: 78vw;
-    margin-left: 6vw;
-}
-
-`
 
 
 export default function Group(){
+    let {data} = FetchGroupBoard();
+
     return(
         <Container>
 
@@ -61,21 +49,13 @@ export default function Group(){
                 GDSC 
             </h1>
 
-
-           
-
             {/* 그룹 공지 */}
 
-            <h1>공지</h1>
-
             <NoticeContainer>
-                <NoticeItem>
-                11월 1일날 GDSC 일정
-                </NoticeItem>
-                <NoticeItem>
-                11월 29일날 GDSC 일정
-                </NoticeItem>
-                
+                <h1>공지사항</h1>
+
+                <GroupBoardItems items={data}/>
+
                 
             </NoticeContainer>
 
