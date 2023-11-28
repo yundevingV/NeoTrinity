@@ -33,7 +33,7 @@ export default function Group() {
 
             {/* 그룹 공지 */}
 
-            <h1>공지</h1>
+            <h1>공지 <StyledLink to='./notice/add'>+</StyledLink></h1>
 
             <NoticeContainer>
                 <NoticeItem>
@@ -48,7 +48,7 @@ export default function Group() {
             <ShowMore to={'/group/notice'} >+ 더보기</ShowMore>
             </ShowMoreContainer>
             {/* 그룹 투표 */}
-            <h1>투표</h1>
+            <h1>투표 <StyledLink to='./vote/add'>+</StyledLink></h1>
 
             <VoteContainer>
 
@@ -97,6 +97,13 @@ h1 {
     margin: 0;
     
 }
+`
+
+const StyledLink = styled(Link)`
+text-decoration : none;
+color : #000;
+
+margin-left : 10px;
 `
 
 const GroupContainer = styled.div`
