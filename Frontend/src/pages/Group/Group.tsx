@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import { styled } from "styled-components";
 import FetchGroupBoard from "../../components/group/model/FetchGroupBoard";
+import GroupBoardItems from "../../components/group/view/GroupBoardItem";
 import GroupAdd from "./GroupAdd";
 
 export default function Group() {
@@ -21,12 +22,7 @@ export default function Group() {
     }
 
     return (
-        <Container>
-
-            <h1>
-                GDSC
-            </h1>
-
+        <Positioner>
 
             {/* 그룹 정보 */}
             <GroupContainer>
@@ -36,79 +32,71 @@ export default function Group() {
 
                 </GroupImg>
                 <GroupInfo>
+                <h2>
+                    GDSC
+                </h2>
+                <p>
                     GDSC 는 Google Developer Student Club 의 약자입니다.
+                    감사합니다.
+
+                </p>
+
                 </GroupInfo>
 
             </GroupContainer>
+            <div style={{ margin: '20px 0' }}></div>
 
-            {/* 그룹 공지 */}
-            {isAddBoard && <GroupAdd onClose={closeAddBoard}/> }
-
-            <h1>
+            <Container>
+            <h3>
                 공지
                     <AddButton onClick={openAddBoard}>
                         +
                     </AddButton>
-            </h1>
-            <NoticeContainer>
-                <NoticeItem>
-                    11월 1일날 GDSC 일정
-                </NoticeItem>
-                <Hr />
-                <NoticeItem>
-                    11월 29일날 GDSC 일정
-                </NoticeItem>
-            </NoticeContainer>
-            <ShowMoreContainer>
-            <ShowMore to={'/group/notice'} >+ 더보기</ShowMore>
-            </ShowMoreContainer>
+            </h3>
+            {/* 그룹 공지 */}
+            {isAddBoard && <GroupAdd onClose={closeAddBoard}/> }
+                <GroupBoardItems items={data}/>
+                <ShowMore to={'/group/notice'} >+ 더보기</ShowMore>
+            </Container>
+            <div style={{ margin: '20px 0' }}></div>
+
+
             {/* 그룹 투표 */}
-            <h1>
-                투표
-                    <AddButton onClick={openAddBoard}>
-                        +
-                    </AddButton>
-            </h1>
 
-            <VoteContainer>
-
-                <Left>
+            <Container>
+                <h3>
+                    투표
+                        <AddButton onClick={openAddBoard}>
+                            +
+                        </AddButton>
+                </h3>
                     <h3>진행중인 투표</h3>
-                    <ProceedingVote>
+                    <VoteContainer>
                         11월 회식 장소
-                    </ProceedingVote>
-                </Left>
+                    </VoteContainer>
 
-                <Right>
                     <h3>종료된 투표</h3>
-                    <ProceededVote>
+                    <VoteContainer>
 
                         <span>10월 회식 장소</span>
-                        <Hr />
                         <span>9월 회식 장소</span>
 
-                    </ProceededVote>
-                </Right>
-            </VoteContainer>
+                    </VoteContainer>
+            </Container>
 
-        </Container>
+        </Positioner>
     )
 }
 
 
-const Container = styled.div`
+const Positioner = styled.div`
 width : 70vw;
 
 margin : 0 auto;
 
 
-h1 {
-    margin : 30px 6vw;
-
-    @media screen and (max-width: 1200px) {
-        margin : 30px 10vw;
-
-}
+h1,h3 {
+    
     display : flex; 
     justify-content : start;    
 }
@@ -118,35 +106,57 @@ h1 {
     
 }
 `
+const GroupContainer = styled.div`
+width : 50vw;
 
+padding : 10px;
+background : #fff;
+border : 1px solid #e2e2e2;
+border-radius : 15px;
+
+margin : 0 auto;
+
+display : flex;
+justify-content : center;
+
+
+@media (max-width: 428px){
+    margin: 6vw;
+    width: 84vw;
+}
+`
+const Container = styled.div`
+width : 50vw;
+
+padding : 10px;
+background : #fff;
+border : 1px solid #e2e2e2;
+border-radius : 15px;
+
+margin : 0 auto;
+
+@media (max-width: 428px){
+    margin: 6vw;
+    width: 84vw;
+}
+`
 const AddButton = styled.button`
 background : transparent;
 border : 0px;
 cursor : pointer;
 
-font-size : 40px;
+font-size : 20px;
 `
 
-const GroupContainer = styled.div`
-display : flex; 
-justify-content : space-around;
-@media (max-width:428px) {
-    width: 84vw;
-    height: 42vw;
-    padding-left: 8%;
-    
-}
 
-
-`
 const GroupImg = styled.div`
 width : 200px;
-height : 150px;
+height : 200px;
 border-radius : 8px;
 
 img  {
     width : 150px;
-    height : 150px;
+    height : 200px;
 
     border-radius : 8px;
     @media (max-width: 428px){
@@ -157,14 +167,13 @@ img  {
 }
 `
 const GroupInfo = styled.div`
-width : 300px;
-height : 150px;
+height : 200px;
 
 display : flex;
+flex-direction : column;
 align-items : center;
 border-radius : 12px;
 
-background : #e2e2e2;
 
 @media (max-width: 428px){
     //width: 42vw;
@@ -172,60 +181,10 @@ background : #e2e2e2;
 }
 `
 
-const NoticeContainer = styled.div`
-width : 50vw;
-display : flex;
-flex-direction : column;
-justify-content : center;
-
-background : #e2e2e2;
-
-border-radius : 8px;
-
-margin : 0 auto;
-
-@media (max-width: 428px){
-    margin: 6vw;
-    width: 84vw;
-}
-`
-
-
-const NoticeItem = styled.div`
-
-padding : 10px 20px;
-
-display : flex;
-align-items : center;
-
-`
-
 const VoteContainer = styled.div`
-display : flex; 
-justify-content : space-around;
-
-span {
-    margin-bottom : 10px;
-}
-@media (max-width: 428px){
-    margin-left: 8vw;
-    width: 84vw;
-}
-`
-const Left = styled.div`
-
-`
-
-const Right = styled.div`
-
-`
-
-const ProceedingVote = styled.div`
 width : 200px;
-height : 150px;
 border-radius : 8px;
 
-background : #e2e2e2;
 display : flex;
 flex-direction : column;
 justify-content : start;
@@ -236,36 +195,6 @@ padding : 10px;
     width: 42vw;
     padding: 10px 0px 0px 0px;
 }
-`
-
-const ProceededVote = styled.div`
-width : 200px;
-height : 150px;
-
-border-radius : 8px;
-
-background : #e2e2e2;
-display : flex;
-flex-direction : column;
-justify-content : start;
-
-padding : 10px;
-
-@media (max-width: 428px){
-    width: 42vw;
-    padding: 10px 0px 0px 0px;
-    margin-left: 2vw;
-}
-`
-
-const Hr = styled.hr`
-width : 90%;
-`
-const ShowMoreContainer = styled.div`
-  display: flex;
-  width: 88vw;
-  justify-content: flex-end;
-  margin-top: auto;
 `
 
 const ShowMore = styled(Link)`

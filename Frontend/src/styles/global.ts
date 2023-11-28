@@ -4,9 +4,8 @@ export const GlobalStyle = createGlobalStyle`
 
     
     body{
-        background-color:#f8f7f7;
+        background-color:#ffffff;
         margin : 0px;
-        font-family : AppleSDGothicNeoM
 
     }
 `
