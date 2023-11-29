@@ -7,7 +7,7 @@ interface AddGroupVoteData {
   description: string,
   startDate : string,
   endDate : string,
-  allInputs: { candidate: string | string[] }[];
+  candidate: { candidate: string}[];
   
 }
 
@@ -30,7 +30,7 @@ export default function AddGroupVote(){
         'Authorization': `Bearer ${token}`, 
       };
 
-      const response = await axios.post(`https://neotrinity.kro.kr/Votes`, data,{headers});
+      const response = await axios.post(`https://neotrinity.kro.kr/vote`, data,{headers});
       navigate('/group');
       
       console.log(response)

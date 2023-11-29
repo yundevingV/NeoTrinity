@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import { styled } from "styled-components";
 import AddGroupVote from "../../../components/group/vote/model/AddGroupVote";
+import CandidateInput from "../../../components/group/vote/view/CandidateInput";
 
 interface FormData {
     startDateYear: string,
@@ -15,7 +16,7 @@ interface FormData {
     endTime : string,
     title : string,
     description: string,
-    candidate : string[],
+    candidate : string,
   }
 
 interface OnclickProps{
@@ -119,7 +120,7 @@ export default function VoteAdd({onClose} : OnclickProps){
         endTime : "",
         title : "",
         description: "",
-        candidate : [],
+        candidate : '',
       });
 
       const { startDateYear, startDateMonth, startDateDay, startTime, endDateYear, endDateMonth, endDateDay, endTime, title, description} = formData;
@@ -160,7 +161,7 @@ export default function VoteAdd({onClose} : OnclickProps){
     }
 
     const compareDate = ({start , end} : CompareDateProps) => {
-      if(new Date(end).getTime() < new Date(start).getTime()) {
+      if(new Date(end).getTime() > new Date(start).getTime()) {
         alert('종료시간이 시작시간보다 빠를 수 없습니다 ! ');
         return;
       } else{
@@ -183,52 +184,21 @@ export default function VoteAdd({onClose} : OnclickProps){
         time: formData.endTime,
       });
 
-      if(allInputs.length > 1){allInputs.pop();}
+      if(candidate.length > 1){candidate.pop();}
 
         if(compareDate({start : startDate, end : endDate})){
           
-          addGroupVote({title,description, startDate, endDate, allInputs});
+          addGroupVote({title,description, startDate, endDate, candidate});
         }
         
     }
+    const [candidate, setCandidate] = useState<{ candidate: string}[]>([]);
 
-    // 후보자 추가
-    const initialInputs = [
-      { candidate: "" },
-      { candidate: "" },
-    ];
-
-    const [additionalInputs, setAdditionalInputs] = useState<{candidate : string}[]>(initialInputs);
-
-    const onAddInput = () => {
-      setAdditionalInputs((prevInputs) => [...prevInputs, {candidate : ""}]);
+    const handleCandidateChange = (newInputs : { candidate: string}[]) => {
+      setCandidate(newInputs);
     };
-  
-    const onAdditionalInputChange = (index: number, name : string, value: string) => {
-      const updatedInputs = [...additionalInputs];
-      updatedInputs[index] = {
-        ...updatedInputs[index],
-        [name]: value,
-      };      
-      setAdditionalInputs(updatedInputs);
-    };
-  
-    const allInputs = [
-      ...additionalInputs.map((input) => ({ candidate: input.candidate, })),
-      { candidate: formData.candidate,  },
-    ];
 
-    const onRemoveInput = (index: number) => {
-      const updatedInputs = [...additionalInputs];
-      if(updatedInputs.length > 1){
-        updatedInputs.splice(index, 1)
-        setAdditionalInputs(updatedInputs);
-        }
-      else {
-        alert('후보자는 최소 1개 이상이여야합니다 !');
-        return;
-      }
-    };
+
 
     return(
       <ModalBackground>
@@ -325,20 +295,8 @@ export default function VoteAdd({onClose} : OnclickProps){
                 type='text'
                 />
             </ContentContainer>
-
-            {additionalInputs.map((input, index) => (
-              <div key={index}>
-                <input
-                  placeholder={`Additional Input ${index + 1}`}
-                  value={input.candidate}
-                  onChange={(e) => onAdditionalInputChange(index, "candidate", e.target.value)}
-                />
-                <button onClick={() => onRemoveInput(index)}> X </button>
-              </div>
-            ))}
-
-        {/* Button to add more input fields */}
-        <button onClick={onAddInput}>Add</button>
+            <CandidateInput formData={formData.candidate} onCandidateChange={handleCandidateChange}/>
+            
             <ButtonContainer>
               <Button background='#f34747' color='#000' onClick={onClose}>
                 취소하기
