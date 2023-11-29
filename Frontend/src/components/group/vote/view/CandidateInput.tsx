@@ -10,7 +10,6 @@ export default function CandidateInput({ formData, onCandidateChange }: Candidat
 
   const onAddInput = () => {
     setAdditionalInputs((prevInputs) => [...prevInputs, { candidate: "" }]);
-    updateAllInputs(); // Call the function to update allInputs
   };
 
   const onAdditionalInputChange = (index: number, value: string) => {
@@ -20,23 +19,16 @@ export default function CandidateInput({ formData, onCandidateChange }: Candidat
       candidate: value,
     };
     setAdditionalInputs(updatedInputs);
-    updateAllInputs(); // Call the function to update allInputs
+    onCandidateChange(updatedInputs);
+
   };
 
-  const updateAllInputs = () => {
-    const newAllInputs = [
-      ...additionalInputs.map((input) => ({ candidate: input.candidate })),
-      { candidate: formData },
-    ];
-    onCandidateChange(newAllInputs);
-  };
 
   const onRemoveInput = (index: number) => {
     const updatedInputs = [...additionalInputs];
     if (updatedInputs.length > 1) {
       updatedInputs.splice(index, 1);
       setAdditionalInputs(updatedInputs);
-      updateAllInputs(); // Call the function to update allInputs
     } else {
       alert("후보자는 최소 1개 이상이어야 합니다!");
       return;

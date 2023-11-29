@@ -170,6 +170,11 @@ export default function VoteAdd({onClose} : OnclickProps){
       }
     }
 
+    const [candidates, setCandidate] = useState<{ candidate: string}[]>([]);
+
+    const handleCandidateChange = (newInputs : { candidate: string}[]) => {
+      setCandidate(newInputs);
+    };
     const addHandler = () => {
       const startDate = combineDate({
         year: formData.startDateYear,
@@ -185,7 +190,7 @@ export default function VoteAdd({onClose} : OnclickProps){
         time: formData.endTime,
       });
 
-      if(candidates.length > 1){candidates.pop();}
+      if(candidates.length > 2){candidates.pop();}
 
         if(compareDate({start : startDate, end : endDate})){
           
@@ -193,13 +198,6 @@ export default function VoteAdd({onClose} : OnclickProps){
         }
         
     }
-    const [candidates, setCandidate] = useState<{ candidate: string}[]>([]);
-
-    const handleCandidateChange = (newInputs : { candidate: string}[]) => {
-      setCandidate(newInputs);
-    };
-
-
 
     return(
       <ModalBackground>
