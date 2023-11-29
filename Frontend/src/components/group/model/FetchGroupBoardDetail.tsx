@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router';
 
 interface FetchGroupBoardData {
 
@@ -9,15 +10,19 @@ interface FetchGroupBoardData {
     title: string;
 }
 
-export default function FetchGroupBoard() {
+export default function FetchGroupBoardDetail() {
 
+    const params = useParams();
+    console.log(params)
+    
     let token = sessionStorage.getItem('token');
 
-    const [data, setData] = useState<FetchGroupBoardData[]>();
+
+    const [data, setData] = useState<FetchGroupBoardData>();
 
     useEffect(() => {
         axios
-            .get(`https://neotrinity.kro.kr/boards`, {
+            .get(`https://neotrinity.kro.kr/boards/${params.id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                   },
