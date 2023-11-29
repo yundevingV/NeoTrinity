@@ -122,10 +122,11 @@ export default function VoteAdd({onClose} : OnclickProps){
         description: "",
         candidate : '',
       });
-
-      const { startDateYear, startDateMonth, startDateDay, startTime, endDateYear, endDateMonth, endDateDay, endTime, title, description} = formData;
+      console.log(formData)
+      const { startDateYear, startDateMonth, startDateDay, startTime, endDateYear, endDateMonth, endDateDay, endTime, title, description , candidate} = formData;
     
       const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        
         const { name, value } = e.target;
         if ((name === 'startDateMonth' || name === 'endDateMonth') && (parseInt(value, 10) < 1 || parseInt(value, 10) > 12)) {
           alert('1에서 12까지 입력가능합니다.')
@@ -161,7 +162,7 @@ export default function VoteAdd({onClose} : OnclickProps){
     }
 
     const compareDate = ({start , end} : CompareDateProps) => {
-      if(new Date(end).getTime() > new Date(start).getTime()) {
+      if(new Date(end).getTime() < new Date(start).getTime()) {
         alert('종료시간이 시작시간보다 빠를 수 없습니다 ! ');
         return;
       } else{
@@ -184,15 +185,15 @@ export default function VoteAdd({onClose} : OnclickProps){
         time: formData.endTime,
       });
 
-      if(candidate.length > 1){candidate.pop();}
+      if(candidates.length > 1){candidates.pop();}
 
         if(compareDate({start : startDate, end : endDate})){
           
-          addGroupVote({title,description, startDate, endDate, candidate});
+          addGroupVote({title,description, startDate, endDate, candidates});
         }
         
     }
-    const [candidate, setCandidate] = useState<{ candidate: string}[]>([]);
+    const [candidates, setCandidate] = useState<{ candidate: string}[]>([]);
 
     const handleCandidateChange = (newInputs : { candidate: string}[]) => {
       setCandidate(newInputs);
