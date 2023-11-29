@@ -4,8 +4,8 @@ import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 
 import { styled } from "styled-components";
-import FetchGroupBoard from "../../components/group/model/FetchGroupBoard";
-import GroupBoardItems from "../../components/group/view/GroupBoardItem";
+import FetchGroupBoard from "../../../components/group/board/model/FetchGroupBoard";
+import GroupBoardItems from "../../../components/group/board/view/GroupBoardItem";
 import GroupAdd from "./GroupAdd";
 
 export default function Group() {
