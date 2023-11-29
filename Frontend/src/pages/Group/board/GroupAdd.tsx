@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import AddGroupBoard from "../../../components/group/board/model/AddGroupBoard";
 
 import { styled } from "styled-components";
+import AddGroupBoard from "../../../components/group/board/model/AddGroupBoard";
 
 interface FormData {
     title: string,

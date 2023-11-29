@@ -1,6 +1,8 @@
+import { stringify } from "querystring";
 import React, { useState } from "react";
 
 import { styled } from "styled-components";
+import AddGroupVote from "../../../components/group/vote/model/AddGroupVote";
 
 interface FormData {
     startDateYear: string,
@@ -48,7 +50,12 @@ margin : 30px;
 
 width : 80%;
 
+display : flex;
+justify-content: center; /* Add space between DateInputs */
 
+  & > * {
+    margin-right: 10px; /* Add right margin to all direct children */
+  }
 `
 interface InputProps {
   width : string;
@@ -60,7 +67,22 @@ const Input = styled.input<InputProps>`
   box-sizing: border-box;
   height: ${(props) => props.height};
   /* Add other styling as needed */
+  
 `;
+
+const DateInput = styled.input`
+  width : 20%;
+  height : 30px;
+
+  border : none;
+  border-bottom: 1px solid #e2e2e2; /* You can adjust the color and thickness as needed */
+  text-align: center; /* Center the text value */
+
+  &::placeholder{
+    text-align : center;
+  }
+  
+`
 
 const ButtonContainer = styled.div`
 
@@ -83,10 +105,10 @@ const Button = styled.button<ButtonProps>`
 `
 
 export default function VoteAdd({onClose} : OnclickProps){
-    // const {addGroupVote} = AddGroupVote();
+    const {addGroupVote} = AddGroupVote();
 
     const [formData, setFormData] = useState<FormData>({
-        startDateYear: "",
+        startDateYear : "",
         startDateMonth : "",
         startDateDay : "",
         startTime : "",
@@ -102,16 +124,67 @@ export default function VoteAdd({onClose} : OnclickProps){
     
       const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
+        if ((name === 'startDateMonth' || name === 'endDateMonth') && (parseInt(value, 10) < 1 || parseInt(value, 10) > 12)) {
+          alert('1에서 12까지 입력가능합니다.')
+          return; // Do nothing if the value is not within the valid range
+        }
+    
+        if ((name === 'startDateDay' || name === 'endDateDay') && (parseInt(value, 10) < 1 || parseInt(value, 10) > 31)) {
+          alert('1에서 31까지 입력가능합니다.')
+
+          return; // Do nothing if the value is not within the valid range
+        }
         setFormData({
           ...formData,
           [name]: value,
         });
+        
       };
 
+    interface CombineDateProps {
+      year : string,
+      month : string,
+      day : string,
+      time : string,
+    }
+
+    const combineDate = ({year,month,day,time} : CombineDateProps) =>{
+      return `${year}-${month}-${day} ${time}:00`;
+
+    }
+    interface CompareDateProps {
+      start : string,
+      end : string,
+    }
+
+    const compareDate = ({start , end} : CompareDateProps) => {
+      if(new Date(end).getTime() < new Date(start).getTime()) {
+        alert('종료시간이 시작시간보다 빠를 수 없습니다 ! ');
+        return;
+      } else{
+        return true;
+      }
+    }
+
     const addHandler = () => {
-        console.log(formData)
-        // addGroupBoard({title,description,status});
-        // onClose();
+      const startDate = combineDate({
+        year: formData.startDateYear,
+        month: formData.startDateMonth,
+        day: formData.startDateDay,
+        time: formData.startTime,
+      });
+  
+      const endDate = combineDate({
+        year: formData.endDateYear,
+        month: formData.endDateMonth,
+        day: formData.endDateDay, 
+        time: formData.endTime,
+      });
+
+        if(compareDate({start : startDate, end : endDate})){
+          addGroupVote({title,description, startDate, endDate});
+        }
+        
     }
 
     
@@ -130,92 +203,10 @@ export default function VoteAdd({onClose} : OnclickProps){
                 onChange={onInputChange}
                 />
             </ContentContainer>
-
-            <ContentContainer>
-                <h4>투표 시작 기간</h4>
-              <Input
-                width='15%'
-                height='30px'
-                placeholder="" 
-                name='startDateYear'
-                value={startDateYear}
-                onChange={ onInputChange }
-                type='text'
-                />
-                
-                <Input
-                width='15%'
-                height='30px'
-                placeholder="" 
-                name='startDateMonth'
-                value={startDateMonth}
-                onChange={ onInputChange }
-                type='text'
-                />
-                <Input
-                width='15%'
-                height='30px'
-                placeholder="" 
-                name='startDateDay'
-                value={startDateDay}
-                onChange={ onInputChange }
-                type='text'
-                />
-                
-                <Input
-                width='15%'
-                height='30px'
-                placeholder="시간" 
-                name='startTime'
-                value={startTime}
-                onChange={ onInputChange }
-                type='text'
-                />
-            </ContentContainer>
-
-            <ContentContainer>
-            <h4>투표 종료 기간</h4>
-              <Input
-                width='15%'
-                height='30px'
-                placeholder="" 
-                name='endDateYear'
-                value={endDateYear}
-                onChange={ onInputChange }
-                type='text'
-                />
-                <Input
-                width='15%'
-                height='30px'
-                placeholder="" 
-                name='endDateMonth'
-                value={endDateMonth}
-                onChange={ onInputChange }
-                type='text'
-                />
-                <Input
-                width='15%'
-                height='30px'
-                placeholder="" 
-                name='endDateDay'
-                value={endDateDay}
-                onChange={ onInputChange }
-                type='text'
-                />
-                <Input
-                width='15%'
-                height='30px'
-                placeholder="시간" 
-                name='endTime'
-                value={endTime}
-                onChange={ onInputChange }
-                type='text'
-                />
-            </ContentContainer>
             <ContentContainer>
               <Input
                 width="90%"
-                height='200px'
+                height='100px'
                 placeholder="내용을 입력해주세요"
                 name='description'
                 value={description}
@@ -223,6 +214,76 @@ export default function VoteAdd({onClose} : OnclickProps){
 
                 />
             </ContentContainer>
+            <h4>투표 시작 기간</h4>
+
+            <ContentContainer>
+
+              <DateInput
+                placeholder="Year" 
+                name='startDateYear'
+                value={startDateYear}
+                onChange={ onInputChange }
+                type='text'
+                /> 
+                
+                <DateInput
+                placeholder="Month" 
+                name='startDateMonth'
+                value={startDateMonth}
+                onChange={ onInputChange }
+                type='text'
+                />
+
+                <DateInput
+                placeholder="Day" 
+                name='startDateDay'
+                value={startDateDay}
+                onChange={ onInputChange }
+                type='text'
+                />
+                
+                <DateInput
+                placeholder="Hour" 
+                name='startTime'
+                value={startTime}
+                onChange={ onInputChange }
+                type='text'
+                />
+            </ContentContainer>
+
+            <h4>투표 종료 기간</h4>
+
+            <ContentContainer>
+              <DateInput
+                placeholder="Year" 
+                name='endDateYear'
+                value={endDateYear}
+                onChange={ onInputChange }
+                type='text'
+                />
+                <DateInput
+                placeholder="Month" 
+                name='endDateMonth'
+                value={endDateMonth}
+                onChange={ onInputChange }
+                type='text'
+                />
+                <DateInput
+                placeholder="Day" 
+                name='endDateDay'
+                value={endDateDay}
+                onChange={ onInputChange }
+                type='text'
+                />
+                <DateInput
+                placeholder="Hour" 
+                name='endTime'
+                value={endTime}
+                onChange={ onInputChange }
+                type='text'
+                />
+            </ContentContainer>
+           
             <ButtonContainer>
               <Button background='#f34747' color='#000' onClick={onClose}>
                 취소하기
