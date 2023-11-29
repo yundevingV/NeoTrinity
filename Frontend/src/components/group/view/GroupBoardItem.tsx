@@ -15,6 +15,8 @@ interface DataTypeList {
     items: DataType[] | undefined;
   }
 
+
+
 const Container = styled.div`
 
 margin : 10px;
@@ -36,7 +38,7 @@ export default function GroupBoardItems({items} : DataTypeList){
         <Positioner>            
             {items?.map((item )=>(
             <Container>
-                <StyledLink to={`./${item.id}`}>
+                <StyledLink to={`./notice/detail/${item.id}`} state={{item : items}}>
                     {item.title}
                 
                 </StyledLink>

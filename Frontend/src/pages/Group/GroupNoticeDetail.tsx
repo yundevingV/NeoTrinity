@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { styled } from "styled-components";
+import FetchGroupBoardDetail from "../../components/group/model/FetchGroupBoardDetail";
+
+interface DataProps{
+    description: string;
+    id: number;
+    status: string;
+    title: string;
+}
 
 const Container = styled.div`
 width : 70vw;
@@ -12,12 +20,6 @@ margin : 0 auto;
 }
 
 h1 {
-    margin : 30px 6vw;
-
-    @media screen and (min-width: 1200px) {
-        margin : 30px 10vw;
-
-}
     display : flex; 
     justify-content : start;    
 }
@@ -31,6 +33,8 @@ justify-content : center;
 @media (max-width: 428px){
  width   : 100vw;
 }
+
+
 `
 
 
@@ -40,11 +44,12 @@ width : 70%;
 margin : 5px auto;
 padding : 20px 15px;
 
-background : #e2e2e2;
-
-border-radius : 12px;
+background : #fff;
+border : 1px solid #e2e2e2;
+border-radius : 15px;
 
 display : flex;
+flex-direction : column;
 align-items : center;
 text-align: left; /* Add this line to align text to the left */
 
@@ -58,7 +63,7 @@ width : 70%;
 margin : 5px auto;
 padding : 20px 15px;
 
-background : #e2e2e2;
+background : #f0f0f0;
 border-radius : 12px;
 
 display : flex;
@@ -106,7 +111,11 @@ margin : 0px 20px;
 `
 
 
-export default function Group(){
+export default function GroupNoticeDetail(){
+    let { data } = FetchGroupBoardDetail();
+
+    const [item,setItem] = useState<DataProps>();
+    
     return(
         <Container>
 
@@ -116,17 +125,13 @@ export default function Group(){
 
             {/* 그룹 공지 */}
 
-            <h1>11월 1일날 일정</h1>
 
             <NoticeContainer>
-                <NoticeItem>
-                안녕하세요 11월 1일날 저희 모각코 시간에 GDSC 가천대학교 챕터와 일자가 겹쳐서 가가전을 개최하게 되었습니다!<br /><br />
-                가가전은 총 3개의 라운드로 구성되어 있습니다<br /><br />
 
-                1. 가천대 vs 가톨릭대 연합 테트리스 (전원참여)<br />
-                2. 끄투 온라인 4vs4 대항전<br />
-                3. 리그오브레전드 5vs5 대항전을 거쳐서<br />
-                3판 2선승제로 승점을 많이 가져간 팀이 우승하는 것으로 정해졌습니다!
+                <NoticeItem>
+                <h1>{data?.title}</h1>
+
+                {data?.description}
 
                 </NoticeItem>
                 <Comment>
