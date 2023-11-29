@@ -15,6 +15,7 @@ interface FormData {
     endTime : string,
     title : string,
     description: string,
+    candidate : string[],
   }
 
 interface OnclickProps{
@@ -32,15 +33,15 @@ const ModalBackground = styled.div`
 
 const Container = styled.div`
 width: 600px;
-height: 800px;
-
+height: 900px;
+overflow-y: auto;
 margin : 20px auto;
 
 background-color: #FCFCFC;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: start;
 
 `
 
@@ -118,6 +119,7 @@ export default function VoteAdd({onClose} : OnclickProps){
         endTime : "",
         title : "",
         description: "",
+        candidate : [],
       });
 
       const { startDateYear, startDateMonth, startDateDay, startTime, endDateYear, endDateMonth, endDateDay, endTime, title, description} = formData;
@@ -181,13 +183,53 @@ export default function VoteAdd({onClose} : OnclickProps){
         time: formData.endTime,
       });
 
+      if(allInputs.length > 1){allInputs.pop();}
+
         if(compareDate({start : startDate, end : endDate})){
-          addGroupVote({title,description, startDate, endDate});
+          
+          addGroupVote({title,description, startDate, endDate, allInputs});
         }
         
     }
 
-    
+    // 후보자 추가
+    const initialInputs = [
+      { candidate: "" },
+      { candidate: "" },
+    ];
+
+    const [additionalInputs, setAdditionalInputs] = useState<{candidate : string}[]>(initialInputs);
+
+    const onAddInput = () => {
+      setAdditionalInputs((prevInputs) => [...prevInputs, {candidate : ""}]);
+    };
+  
+    const onAdditionalInputChange = (index: number, name : string, value: string) => {
+      const updatedInputs = [...additionalInputs];
+      updatedInputs[index] = {
+        ...updatedInputs[index],
+        [name]: value,
+      };      
+      setAdditionalInputs(updatedInputs);
+    };
+  
+    const allInputs = [
+      ...additionalInputs.map((input) => ({ candidate: input.candidate, })),
+      { candidate: formData.candidate,  },
+    ];
+
+    const onRemoveInput = (index: number) => {
+      const updatedInputs = [...additionalInputs];
+      if(updatedInputs.length > 1){
+        updatedInputs.splice(index, 1)
+        setAdditionalInputs(updatedInputs);
+        }
+      else {
+        alert('후보자는 최소 1개 이상이여야합니다 !');
+        return;
+      }
+    };
+
     return(
       <ModalBackground>
         <Container>
@@ -283,7 +325,20 @@ export default function VoteAdd({onClose} : OnclickProps){
                 type='text'
                 />
             </ContentContainer>
-           
+
+            {additionalInputs.map((input, index) => (
+              <div key={index}>
+                <input
+                  placeholder={`Additional Input ${index + 1}`}
+                  value={input.candidate}
+                  onChange={(e) => onAdditionalInputChange(index, "candidate", e.target.value)}
+                />
+                <button onClick={() => onRemoveInput(index)}> X </button>
+              </div>
+            ))}
+
+        {/* Button to add more input fields */}
+        <button onClick={onAddInput}>Add</button>
             <ButtonContainer>
               <Button background='#f34747' color='#000' onClick={onClose}>
                 취소하기

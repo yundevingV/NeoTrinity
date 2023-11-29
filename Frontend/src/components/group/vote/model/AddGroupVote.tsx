@@ -7,7 +7,8 @@ interface AddGroupVoteData {
   description: string,
   startDate : string,
   endDate : string,
-
+  allInputs: { candidate: string | string[] }[];
+  
 }
 
 export default function AddGroupVote(){
