@@ -33,8 +33,8 @@ const ModalBackground = styled.div`
 `;
 
 const Container = styled.div`
-width: 600px;
-height: 900px;
+width: 60vw;
+height: 85vh;
 overflow-y: auto;
 margin : 20px auto;
 

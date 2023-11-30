@@ -23,8 +23,8 @@ const ModalBackground = styled.div`
 `;
 
 const Container = styled.div`
-width: 600px;
-height: 600px;
+width: 60vw;
+height: 85vh;
 
 margin : 20px auto;
 
@@ -55,8 +55,13 @@ const Input = styled.input<InputHeightProps>`
   /* Add other styling as needed */
 `;
 
-const ButtonContainer = styled.div`
+const Textarea = styled.textarea`
+  width : 100%;
+  height : 150px;
+`
 
+const ButtonContainer = styled.div`
+margin: 0 auto;
 `
 interface ButtonProps {
   color : string;
@@ -86,7 +91,7 @@ export default function GroupAdd({onClose} : OnclickProps){
     
       const { title, description, status } = formData;
     
-      const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const onInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData({
           ...formData,
@@ -116,8 +121,7 @@ export default function GroupAdd({onClose} : OnclickProps){
             </ContentContainer>
 
             <ContentContainer>
-              <Input
-                height='200px'
+              <Textarea
                 placeholder="내용을 입력해주세요"
                 name='description'
                 value={description}
