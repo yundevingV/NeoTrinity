@@ -122,7 +122,6 @@ export default function VoteAdd({onClose} : OnclickProps){
         description: "",
         candidate : '',
       });
-      console.log(formData)
       const { startDateYear, startDateMonth, startDateDay, startTime, endDateYear, endDateMonth, endDateDay, endTime, title, description , candidate} = formData;
     
       const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -175,6 +174,7 @@ export default function VoteAdd({onClose} : OnclickProps){
     const handleCandidateChange = (newInputs : { candidate: string}[]) => {
       setCandidate(newInputs);
     };
+
     const addHandler = () => {
       const startDate = combineDate({
         year: formData.startDateYear,
@@ -294,6 +294,7 @@ export default function VoteAdd({onClose} : OnclickProps){
                 type='text'
                 />
             </ContentContainer>
+
             <CandidateInput formData={formData.candidate} onCandidateChange={handleCandidateChange}/>
             
             <ButtonContainer>
