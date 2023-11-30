@@ -6,10 +6,10 @@ import './App.css';
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import MainPage from './pages/MainPage'
-import Group from './pages/Group/Group'
-import GroupAdd from './pages/Group/GroupAdd';
-import GroupNotice from './pages/Group/GroupNotice'
-import GroupNoticeDetail from './pages/Group/GroupNoticeDetail';
+import Group from './pages/Group/board/Group'
+import GroupAdd from './pages/Group/board/GroupAdd';
+import GroupNotice from './pages/Group/board/GroupNotice'
+import GroupNoticeDetail from './pages/Group/board/GroupNoticeDetail';
 
 import Profile from './pages/Proifle/Profile';
 import { GlobalStyle } from './styles/global';

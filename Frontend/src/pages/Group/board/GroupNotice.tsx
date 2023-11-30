@@ -1,8 +1,8 @@
 import React from "react";
 
 import { styled } from "styled-components";
-import FetchGroupBoard from "../../components/group/model/FetchGroupBoard";
-import GroupBoardItems from "../../components/group/view/GroupBoardItem";
+import FetchGroupBoard from "../../../components/group/board/model/FetchGroupBoard";
+import GroupBoardItems from "../../../components/group/board/view/GroupBoardItem";
 
 const Container = styled.div`
 width : 70vw;

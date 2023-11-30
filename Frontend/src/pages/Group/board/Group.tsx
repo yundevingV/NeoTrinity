@@ -4,9 +4,11 @@ import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 
 import { styled } from "styled-components";
-import FetchGroupBoard from "../../components/group/model/FetchGroupBoard";
-import GroupBoardItems from "../../components/group/view/GroupBoardItem";
+
 import GroupAdd from "./GroupAdd";
+import VoteAdd from "../vote/VoteAdd";
+import FetchGroupBoard from "../../../components/group/board/model/FetchGroupBoard";
+import GroupBoardItems from "../../../components/group/board/view/GroupBoardItem";
 
 export default function Group() {
     let {data} = FetchGroupBoard();
@@ -20,7 +22,15 @@ export default function Group() {
     const closeAddBoard = () =>{
         setIsAddBoard(false);
     }
-
+    // 투표 게시 모달
+    const [isAddVote,setIsAddVote] = useState<Boolean>(false);
+    
+    const openAddVote = () =>{
+        setIsAddVote(true);
+    }
+    const closeAddVote = () =>{
+        setIsAddVote(false);
+    }
     return (
         <Positioner>
 
@@ -64,9 +74,11 @@ export default function Group() {
             {/* 그룹 투표 */}
 
             <Container>
+            {isAddVote && <VoteAdd onClose={closeAddVote}/> }
+
                 <h3>
                     투표
-                        <AddButton onClick={openAddBoard}>
+                        <AddButton onClick={openAddVote}>
                             +
                         </AddButton>
                 </h3>

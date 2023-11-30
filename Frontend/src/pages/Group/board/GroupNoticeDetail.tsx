@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { styled } from "styled-components";
-import FetchGroupBoardDetail from "../../components/group/model/FetchGroupBoardDetail";
+import FetchGroupBoardDetail from "../../../components/group/board/model/FetchGroupBoardDetail";
 
 interface DataProps{
     description: string;
