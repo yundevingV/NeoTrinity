@@ -15,6 +15,7 @@ import Profile from './pages/Proifle/Profile';
 import { GlobalStyle } from './styles/global';
 import SideBar from './components/SideBar/SideBar';
 import Reservation from './pages/Reservation/Reservation';
+import VoteDetail from './pages/Group/vote/VoteDetail';
 
 
 export default function App() {
@@ -36,8 +37,8 @@ export default function App() {
 
         <Route path='/group/notice' element = {<SideBar content={<GroupNotice />} />} />
         <Route path='/group/notice/detail/:id' element = {<SideBar content={<GroupNoticeDetail />} />} />
-        {/* <Route path='/group/vote/' element = {<GroupVote />} />
-        <Route path='/group/vote/detail/*' element = {<GroupVoteDetail />} /> */}
+        
+        <Route path='/group/vote/detail/*' element = {<VoteDetail />} /> 
 
         {/* ㄱreservation */}
         <Route path='/reservation' element = {<SideBar content={<Reservation />} />} />
