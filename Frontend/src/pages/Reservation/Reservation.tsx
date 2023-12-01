@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { styled } from "styled-components";
 import { DateTimePicker } from '@mui/x-date-pickers';
@@ -11,6 +11,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
 
 import ReservationItem from "../../components/reservation/ReservationItem";
+import { getName, checkReservation } from "../../utilities/login/reservation/GetReservation";
 
 
 
@@ -94,19 +95,31 @@ const Hr = styled.hr`
 width : 90%;
 `
 export default function Reservation() {
+    const contractID = '0xaFe59e93DA9967089995656f8756f96F19734fe5';
+    const [reservationName, setReservationName] = useState('');
+    useEffect(() => {
+        const fetchData = async () => {
+            const name = await getName(contractID);
+            setReservationName(name);
+            console.log('Reservation name:', name);
+            checkReservation(contractID);
+        };
+
+        fetchData();
+    }, [contractID]);
 
     const defalutTime = dayjs().add(1, 'hour');
     const defalutTimeToString = defalutTime.format('YYYY-MM-DD HH');
     const [selectedTime, setSelectedTime] = useState<String | null>(defalutTimeToString);
-    const handleTimeChange= (newTime: Dayjs | null) =>{
+    const handleTimeChange = (newTime: Dayjs | null) => {
         if (newTime) {
             setSelectedTime(newTime.format('YYYY-MM-DD HH'));
             console.log('선택한 시간:', newTime.format('YYYY-MM-DD HH'));
-            
-          }
-        
+
+        }
+
     }
-    
+
     return (
         <Container>
 
@@ -115,12 +128,12 @@ export default function Reservation() {
                     Product
                 </h1>
                 <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="zh-cn">
-                    <MobileDateTimePicker 
-                    onChange={handleTimeChange}
-                    defaultValue={defalutTime}
-                    label="시간을 선택해주세요" 
-                    views={['year', 'month', 'day', 'hours']}
-                     />
+                    <MobileDateTimePicker
+                        onChange={handleTimeChange}
+                        defaultValue={defalutTime}
+                        label="시간을 선택해주세요"
+                        views={['year', 'month', 'day', 'hours']}
+                    />
                 </LocalizationProvider>
             </TopContainer>
 
@@ -135,9 +148,9 @@ export default function Reservation() {
 
             <ReservationContainer>
                 <h1>예약가능 물품 </h1>
-                <Hr/>
+                <Hr />
 
-                <ReservationItem/>   
+                <ReservationItem />
 
             </ReservationContainer>
 
