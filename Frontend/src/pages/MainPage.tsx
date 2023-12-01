@@ -4,6 +4,13 @@ import DetailButton from "../components/main/DetailButton";
 
 //TODO: DetailButton 추후에 서버에서 받아온 정보 props로 넘겨야 함.
 
+const Wrapper = styled.div`
+  @media screen and (max-width: 428px){
+    width: 100vw;
+    overflow: hidden;
+  }
+`
+
 const Title = styled.p`
     font-size: 30px;
     font-weight: bold;
@@ -49,7 +56,7 @@ const NoticeBox = styled.div`
 
 function MainPage() {
     return (
-        <>
+        <Wrapper>
             <Title>My Reservation</Title>
             <Container>
                 <DetailButton/>
@@ -76,7 +83,7 @@ function MainPage() {
                 <p>공지2</p>
                 <p>공지3</p>
             </NoticeBox>
-        </>
+        </Wrapper>
     )
 }
 
