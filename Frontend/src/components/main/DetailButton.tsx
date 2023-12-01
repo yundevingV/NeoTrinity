@@ -34,8 +34,14 @@ const ImageBox = styled.div`
 `
 
 const Image = styled.img`
-
+width: 100%;
+  height: 100%;
    
+`
+const Description = styled.div`
+    width: 300px;
+    white-space: nowrap;
+
 `
 
 function DetailButton({src , description} : Props) {
@@ -46,7 +52,7 @@ function DetailButton({src , description} : Props) {
             <ImageBox>
                 <Image src={src} alt='x' />
             </ImageBox>
-            <p>{description}</p>
+            <Description>{description}</Description>
         </Box>
     )
     

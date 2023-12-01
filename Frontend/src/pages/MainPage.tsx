@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import DetailButton from "../components/main/DetailButton";
+import gdsc from "../assets/gdsc.png";
 import startup_lounge from '../assets/startup_lounge.jpg';
 import {Link} from 'react-router-dom';
 //TODO: DetailButton 추후에 서버에서 받아온 정보 props로 넘겨야 함.
@@ -56,13 +57,13 @@ function MainPage() {
         <>
             <Title>My Reservation</Title>
             <Container>
-                <DetailButton src='starup_lounge' description="스타입니다." />
+                <DetailButton src={startup_lounge} description="스타입니다." />
 
             </Container>
             <Title>My Group</Title>
             <Container>
               <StyledLink to='/group'>
-                <DetailButton src={startup_lounge} description="GDSC는 구글 학생 클럽입니다." />
+                <DetailButton src={gdsc} description="GDSC는 구글 학생 클럽입니다." />
                 </StyledLink>
             </Container>
             

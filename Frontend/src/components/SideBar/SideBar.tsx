@@ -40,7 +40,7 @@ function SideBar({ content }: { content: ReactNode }) {
           <Introduction>유지호<br></br><br></br>2018216216<br></br></Introduction>
         </ProfileContainer>
 
-      <NavLink url="/" label="Main" />
+      <NavLink url="/main" label="Main" />
       <NavLink url="/group" label="Group" />
       <NavLink url="/reservation" label="Reservation" />
 
