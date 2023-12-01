@@ -104,7 +104,7 @@ export default function VoteDetail(){
         console.log(elect)
      }
     const handler = () =>{
-        vote('a',1)
+        // vote('a',1)
         alert('투표를 성공했습니다.')
         
 
