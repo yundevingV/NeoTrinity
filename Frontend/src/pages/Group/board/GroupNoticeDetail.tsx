@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { styled } from "styled-components";
 import FetchGroupBoardDetail from "../../../components/group/board/model/FetchGroupBoardDetail";
@@ -19,17 +19,12 @@ margin : 0 auto;
     width: 100vw;
 }
 
-h1 {
-    display : flex; 
-    justify-content : start;    
-}
+
 `
 
 const NoticeContainer = styled.div`
 width : 70vw;
-display : flex;
-flex-direction : column;
-justify-content : center;
+
 @media (max-width: 428px){
  width   : 100vw;
 }
@@ -39,25 +34,43 @@ justify-content : center;
 
 
 const NoticeItem = styled.div`
-width : 70%;
+width : calc(70% - 100px);
+
 
 margin : 5px auto;
-padding : 20px 15px;
+padding : 20px 50px;
 
 background : #fff;
 border : 1px solid #e2e2e2;
 border-radius : 15px;
 
 display : flex;
-flex-direction : column;
-align-items : center;
-text-align: left; /* Add this line to align text to the left */
+flex-direction: column;
+
 
 @media (max-width: 428px){
-    width: 84vw;
+    width: calc(84vw - 50px);
 }
+`
+const BP = styled.div`
+display: flex;
+justify-content: start;
+margin-bottom : 10px;
+font-size : 20px;
 
 `
+
+const LP = styled.div`
+display: flex;
+justify-content: start;
+
+color : #4f4c4c;
+font-size : 16px;
+margin-bottom : 15px;
+
+
+`
+
 const Comment = styled.div`
 width : 70%;
 margin : 5px auto;
@@ -99,7 +112,7 @@ margin : 0px 20px 10px;
 
 text-align: left; /* Add this line to align text to the left */
 
-span{
+P{
     font-weight : 1000;
 }
 
@@ -113,25 +126,26 @@ margin : 0px 20px;
 
 export default function GroupNoticeDetail(){
     let { data } = FetchGroupBoardDetail();
+    console.log(data)
+    const dateString = data?.createdAt;
+    const time = new Date(dateString);
 
-    const [item,setItem] = useState<DataProps>();
-    
+    console.log(time.getFullYear())
+    console.log(time.getMonth() + 1)
+    console.log(time.getDate())
+
+          
     return(
         <Container>
-
-            <h1>
-                GDSC 
-            </h1>
-
-            {/* 그룹 공지 */}
-
 
             <NoticeContainer>
 
                 <NoticeItem>
-                <h1>{data?.title}</h1>
+                    <BP>{data?.user.username}</BP>
+                    <LP>{time.getFullYear()}. {time.getMonth() +1}. {time.getDate()}</LP>
+                    <BP>{data?.title}</BP>
 
-                {data?.description}
+                    <LP>{data?.description}</LP>
 
                 </NoticeItem>
                 <Comment>
