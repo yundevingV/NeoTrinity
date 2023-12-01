@@ -2,6 +2,7 @@ import React, { ReactNode, useState } from "react";
 import styled from "styled-components";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useMediaQuery } from "react-responsive";
+import profileImage from "../../assets/profile/profile.png";
 
 import NavLink from "./NavLink";
 
@@ -36,7 +37,9 @@ function SideBar({ content }: { content: ReactNode }) {
       </TopBar>
       <Side style={{ transform: isMobile? `translatex(${xPosition})`: 'none', transition: '0.3s' }}>
         <ProfileContainer>
-          <ProfilePicture></ProfilePicture>
+          <ProfilePicture>
+            <img width='100px 'src={profileImage} alt="x"/>
+          </ProfilePicture>
           <Introduction>유지호<br></br><br></br>2018216216<br></br></Introduction>
         </ProfileContainer>
 
