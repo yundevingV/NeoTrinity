@@ -15,7 +15,6 @@ interface FetchGroupBoardData {
 export default function FetchGroupBoardDetail() {
 
     const params = useParams();
-    console.log(params)
     
     let token = sessionStorage.getItem('token');
 

@@ -130,10 +130,6 @@ export default function GroupNoticeDetail(){
     const dateString = data?.createdAt;
     const time = new Date(dateString);
 
-    console.log(time.getFullYear())
-    console.log(time.getMonth() + 1)
-    console.log(time.getDate())
-
           
     return(
         <Container>

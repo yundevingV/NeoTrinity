@@ -9,13 +9,13 @@ interface DataType{
     title: string;
     description: string;
     status : string;
+    createdAt : any;
+    user: {username : string};
 }
 
 interface DataTypeList {
     items: DataType[] | undefined;
   }
-
-
 
 const Container = styled.div`
 
@@ -43,13 +43,20 @@ display: flex;
 justify-content: start;
 
 margin-bottom : 5px;
+.title{
+    font-size: 18px;
+
+}
 `
 
 const Bottom = styled.div`
 display: flex;
 justify-content: start;
+
+.writer{
+}
 .date{
-    
+    margin-left : 10px;
     color : #aaa;
 }
 `
@@ -64,16 +71,17 @@ export default function GroupBoardItems({items} : DataTypeList){
         if(location.pathname.includes('notice')) {setLink('')}
         else {setLink('/notice')} 
     },[])
-    console.log(Date.now());
+
     return(
         <Positioner>            
             {items?.map((item )=>(
             <Container>
                 <StyledLink to={`.${link}/detail/${item.id}`}>
-                    <Top>{item.title}</Top>
+                    <Top><span className="title">{item.title}</span></Top>
                     <Bottom>
-                    <span className="writer">글쓴이</span> 
-                    <span className="date">날짜</span>
+                    <span className="writer">{item.user.username}</span> 
+                    <span className="date">{item.createdAt.split('T')[0]} </span>
+                    
                     </Bottom>
                 </StyledLink>
             </Container>
