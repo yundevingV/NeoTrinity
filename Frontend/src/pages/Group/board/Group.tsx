@@ -84,14 +84,21 @@ export default function Group() {
                 </h3>
                     <h3>진행중인 투표</h3>
                     <VoteContainer>
-                        11월 회식 장소
+                        <StyledLink to='./vote/detail/1'>
+                        <span className="title">종강 파티 투표</span>
+                        <span className="date">2023-12-01 ~ 2023-12-08</span>
+                        </StyledLink>
                     </VoteContainer>
 
                     <h3>종료된 투표</h3>
                     <VoteContainer>
 
-                        <span>10월 회식 장소</span>
-                        <span>9월 회식 장소</span>
+                        <span className="title">스터디 주제</span>
+                        <span className="date">2023-11-05 ~ 2023-11-12</span>
+
+                        <span className="title">개강 파티 투표</span>
+                        <span className="date">2023-09-10 ~ 2023-09-08</span>
+
 
                     </VoteContainer>
             </Container>
@@ -194,7 +201,7 @@ border-radius : 12px;
 `
 
 const VoteContainer = styled.div`
-width : 200px;
+width : 80%;
 border-radius : 8px;
 
 display : flex;
@@ -204,11 +211,23 @@ justify-content : start;
 padding : 10px;
 
 @media (max-width: 428px){
-    width: 42vw;
+    width: 60vw;
     padding: 10px 0px 0px 0px;
 }
-`
 
+.title{
+    display: flex;
+    justify-content: start;
+}
+
+.date{
+    color : #aaa;
+}
+`
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: black;
+`
 const ShowMore = styled(Link)`
     text-decoration: none;
     color: black;

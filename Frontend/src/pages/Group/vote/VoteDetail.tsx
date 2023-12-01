@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { styled } from "styled-components";
 import FetchGroupBoardDetail from "../../../components/group/board/model/FetchGroupBoardDetail";
+import { vote } from "../../../utilities/VoteService";
 
 interface DataProps{
     title: string;  
@@ -79,19 +80,35 @@ border : 0px;
 margin-top: 10px;
 
 `
+const Date = styled.span`
+display: flex;
+justify-content: start;
+
+color : #4f4c4c;
+font-size : 16px;
+margin-bottom : 15px;
+`
+
+const Label = styled.div`
+margin-bottom: 10px;
+`
+
 export default function VoteDetail(){
     let { data } = FetchGroupBoardDetail();
 
-    const options = ['a', 'b']; // Add more options as needed
-
+    const options = ['삼겹살','치킨','부대찌개']; // Add more options as needed
     const [elect, setElect] = useState<string>();
 
     const handleChange=(e : any)=>{
         setElect( e.target.value);
         console.log(elect)
      }
-    const vote = () =>{
-        console.log(elect)
+    const handler = () =>{
+        vote('a',1)
+        alert('투표를 성공했습니다.')
+        
+
+        
     }
     return(
         <Container>
@@ -103,16 +120,19 @@ export default function VoteDetail(){
 
                 <VoteItem>
                 <Title>
-                    투표 제목
+                    종강 파티 투표
                 </Title>
+                <Date>
+                    2023-12-01 ~ 2023-12-08
+                </Date>
                 <Content>
 
-                    투표 내용
+                    종강 파티 어디서 진행 할지 투표해주세요
                 </Content>
                 
                 <Form>
                     {options.map((option) => (
-                    <label key={option}>
+                    <Label key={option}>
                         <input
                         type="radio"
                         name="vote"
@@ -120,9 +140,9 @@ export default function VoteDetail(){
                         onChange={handleChange}
                         />
                         {`${option.toUpperCase()}`}
-                    </label>
+                    </Label>
                     ))}
-                    <Button type="button" onClick={vote}>
+                    <Button type="button" onClick={handler  }>
                     Vote
                     </Button>
                 </Form>
