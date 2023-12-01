@@ -127,7 +127,7 @@ margin : 0px 20px;
 export default function GroupNoticeDetail(){
     let { data } = FetchGroupBoardDetail();
     console.log(data)
-    const dateString = data?.createdAt;
+    const dateString = data?.createdAt; 
     const time = new Date(dateString);
 
           

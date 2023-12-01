@@ -17,18 +17,11 @@ margin : 0 auto;
 @media (max-width: 428px){
     width: 100vw;
 }
-
-h1 {
-    display : flex; 
-    justify-content : start;    
-}
 `
 
 const VoteContainer = styled.div`
 width : 70vw;
-display : flex;
-flex-direction : column;
-justify-content : center;
+
 @media (max-width: 428px){
  width   : 100vw;
 }
@@ -36,33 +29,59 @@ justify-content : center;
 
 `
 
-
 const VoteItem = styled.div`
-width : 70%;
+width : calc(70% - 100px);
 
 margin : 5px auto;
-padding : 20px 15px;
+padding : 20px 50px;
 
 background : #fff;
 border : 1px solid #e2e2e2;
 border-radius : 15px;
 
 display : flex;
-flex-direction : column;
-align-items : center;
-text-align: left; /* Add this line to align text to the left */
+flex-direction: column;
+
 
 @media (max-width: 428px){
-    width: 84vw;
+    width: calc(84vw - 50px);
 }
-
+`
+const Title = styled.div`
+display: flex;
+justify-content: start;
+margin-bottom : 10px;
+font-size : 20px;
 `
 
+const Content = styled.div`
+display: flex;
+justify-content: start;
+
+color : #4f4c4c;
+font-size : 16px;
+margin-bottom : 15px;
+`
+
+const Form = styled.form`
+display: flex;
+flex-direction: column;
+justify-content: center;
+`
+
+const Button = styled.button`
+margin: 0% 40%;
+width: 20%;
+height: 30px;
+color : #fff;
+background-color: #6464e9;
+border : 0px;
+margin-top: 10px;
+
+`
 export default function VoteDetail(){
     let { data } = FetchGroupBoardDetail();
 
-    const [item,setItem] = useState<DataProps>();
-    
     const options = ['a', 'b']; // Add more options as needed
 
     const [elect, setElect] = useState<string>();
@@ -83,13 +102,15 @@ export default function VoteDetail(){
             <VoteContainer>
 
                 <VoteItem>
-                <h1>투표 제목</h1>
+                <Title>
+                    투표 제목
+                </Title>
+                <Content>
 
-                투표 내용
-
-                </VoteItem>
+                    투표 내용
+                </Content>
                 
-                <form>
+                <Form>
                     {options.map((option) => (
                     <label key={option}>
                         <input
@@ -101,10 +122,13 @@ export default function VoteDetail(){
                         {`${option.toUpperCase()}`}
                     </label>
                     ))}
-                    <button type="button" onClick={vote}>
+                    <Button type="button" onClick={vote}>
                     Vote
-                    </button>
-                </form>
+                    </Button>
+                </Form>
+                </VoteItem>
+                
+               
 
             </VoteContainer>
             
