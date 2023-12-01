@@ -3,16 +3,18 @@ import styled from "styled-components"
 interface Props{
     src : string,
     description : string,
+    
 }
 const Box = styled.div`
     display: flex;
     //flex: 0 0 auto;
-    width: 300px;
+    width: 100px;
     height: 300px;
     align-items: center;
     flex-direction: column;
     background-color: white;
     margin: 40px;
+    word-break:break-all;
 
     @media (max-width: 428px){
         width: 130px;
@@ -36,12 +38,22 @@ const ImageBox = styled.div`
 const Image = styled.img`
 width: 100%;
   height: 100%;
+  word-break:break-all;
+
    
 `
 const Description = styled.div`
-    width: 300px;
-    white-space: nowrap;
+    width: 100px;
+    height: 100px;
+    word-break:break-all;
+    font-weight: 700;
 
+    @media (max-width: 428px){
+        width: 120px;
+        height: 70px;
+        word-break:break-all;
+        font-weight: 700;
+    }
 `
 
 function DetailButton({src , description} : Props) {

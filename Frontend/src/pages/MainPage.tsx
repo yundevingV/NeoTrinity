@@ -57,13 +57,13 @@ function MainPage() {
         <>
             <Title>My Reservation</Title>
             <Container>
-                <DetailButton src={startup_lounge} description="스타입니다." />
+                <DetailButton src={startup_lounge} description="스타트업 라운지" />
 
             </Container>
             <Title>My Group</Title>
             <Container>
               <StyledLink to='/group'>
-                <DetailButton src={gdsc} description="GDSC는 구글 학생 클럽입니다." />
+                <DetailButton src={gdsc} description="GDSC"/>
                 </StyledLink>
             </Container>
             
