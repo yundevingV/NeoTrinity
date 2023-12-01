@@ -5,7 +5,7 @@ import FetchGroupBoard from "../../../components/group/board/model/FetchGroupBoa
 import GroupBoardItems from "../../../components/group/board/view/GroupBoardItem";
 
 const Container = styled.div`
-width : 80vw;
+width : 70vw;
 
 margin : 0 auto;
 
@@ -13,20 +13,21 @@ margin : 0 auto;
     width: 100vw;
 }
 
-`
-const TopContainer = styled.div`
-h3{
-    color : #767676;
+h1 {
+    
+    display : flex; 
+    justify-content : start;    
 }
 `
 
 const NoticeContainer = styled.div`
-width : 80vw;
+width : 60vw;
 
 display : flex;
 flex-direction : column;
 justify-content : center;
 
+padding : 0px 20px;
 
 background : #fff;
 border : 1px solid #e2e2e2;
@@ -35,19 +36,26 @@ border-radius : 15px;
 margin : 0 auto;
 `
 
-export default function Group(){
+
+
+
+export default function VoteList(){
     let {data} = FetchGroupBoard();
-    console.log(data)
+
     return(
         <Container>
-            <TopContainer>
-            <h1>공지사항</h1>
-            <h3>GDSC</h3>
-            </TopContainer>
+
+            <h1>
+                GDSC 
+            </h1>
+
             {/* 그룹 공지 */}
 
             <NoticeContainer>
+                <h1>공지사항</h1>
+
                 <GroupBoardItems items={data}/>
+
                 
             </NoticeContainer>
 

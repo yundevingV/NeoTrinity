@@ -19,16 +19,39 @@ interface DataTypeList {
 
 const Container = styled.div`
 
-margin : 10px;
+width : calc(100% - 20px);
+margin : 10px 0px;
 
+padding : 10px;
+
+border-bottom: 1px solid #000;
 
 &:hover {
     text-decoration: underline;
   }
+
+display : flex;
+
 `
 const StyledLink = styled(Link)`
     text-decoration : none;
     color : #000;
+`
+
+const Top = styled.div`
+display: flex;
+justify-content: start;
+
+margin-bottom : 5px;
+`
+
+const Bottom = styled.div`
+display: flex;
+justify-content: start;
+.date{
+    
+    color : #aaa;
+}
 `
 
 
@@ -41,14 +64,17 @@ export default function GroupBoardItems({items} : DataTypeList){
         if(location.pathname.includes('notice')) {setLink('')}
         else {setLink('/notice')} 
     },[])
-
+    console.log(Date.now());
     return(
         <Positioner>            
             {items?.map((item )=>(
             <Container>
                 <StyledLink to={`.${link}/detail/${item.id}`}>
-                    {item.title}
-                
+                    <Top>{item.title}</Top>
+                    <Bottom>
+                    <span className="writer">글쓴이</span> 
+                    <span className="date">날짜</span>
+                    </Bottom>
                 </StyledLink>
             </Container>
             
