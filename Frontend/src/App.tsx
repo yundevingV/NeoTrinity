@@ -42,7 +42,7 @@ export default function App() {
 
         {/* ㄱreservation */}
         <Route path='/reservation' element = {<SideBar content={<Reservation />} />} />
-        <Route path='/reservation/detail' element = {<SideBar content={<ReservationDetail />} />} />
+        <Route path='/reservation/detail/:id' element = {<SideBar content={<ReservationDetail />} />} />
       
 
       </Routes>

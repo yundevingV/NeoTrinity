@@ -1,20 +1,34 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function ReservationItem() {
+import startup from "../../assets/startup.jpeg";
+
+interface ReservationItemProps {
+    name: string;
+    status: string;
+    now: string; 
+    contractID: string;// 예시에 따라 실제로 사용하는 상태에 따라 수정
+  }
+  
+
+const ReservationItem: React.FC<ReservationItemProps> = ({ name, status, now, contractID }) => {
+    console.log(now);
     return (
         <>
             <Container>
-                <h3>물품이름</h3>
-                <p className='green'>대여가능</p>
+                <h3>{name}</h3>
+                <p className={(status == '예약가능')?'green':'red'}>{status}</p>
+                <img width={'180px'} height={'140px'} src={startup} alt="x"/>
                 <ButtonContainer>
-                    <ButtonText to={'/reservation/detail'}>예약하기</ButtonText>
+                    <ButtonText to={`/reservation/detail/${name}&${now}&${contractID}`}>상세보기</ButtonText>
                 </ButtonContainer>
             </Container>
             <Hr />
         </>
     )
 }
+
+export default ReservationItem;
 
 const Container = styled.div`
 padding : 10px 20px;
@@ -32,6 +46,10 @@ text-align : left;
     
 }
 
+`
+const ImageDisplay = styled.div`
+    display: flex;
+    flex-direction: row;
 `
 const ButtonContainer = styled.div`
     display: flex;

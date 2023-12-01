@@ -1,34 +1,72 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
+import startup from "../../assets/startup.jpeg";
+import { reserve } from "../../utilities/login/reservation/GetReservation";
+
+function parseDateTime(dateTimeString: string) {
+    const regex = /(\d{4})-(\d{2})-(\d{2}) (\d{2})/;
+    const match = dateTimeString.match(regex);
+  
+    if (match) {
+      const [year, month, day, hour] = match.slice(1).map(Number);
+      return { year, month, day, hour } as { year: number, month: number, day: number, hour: number };
+    } else {
+      console.error("Invalid date format");
+      return null;
+    }
+  }
 
 export default function ReservationDetail() {
+    const { id } = useParams();
+    const parsedArray = id!.split('&');
+    const name = parsedArray[0];
+    const time = parsedArray[1];
+    const ID = parsedArray[2].toString();
   
-  const handleButtonClick = () => {
-    // 버튼이 클릭되었을 때 실행할 로직 추가
-    console.log('Button clicked!');
-  };
+    const [parsedTime, setParsedTime] = useState<{ year: number, month: number, day: number, hour: number } | null>(() => parseDateTime(time));
+    const [selectedHours, setSelectedHours] = useState(0);
+  
+    const handleButtonClick = () => {
+      console.log('Button clicked!');
+      console.log(parsedTime);
+      if (parsedTime) {
+        reserve(ID, parsedTime.year, parsedTime.month, parsedTime.day, parsedTime.hour, selectedHours);
+      }
+    };
+  
+
+  useEffect(() => {
+    // 이 곳에서 필요한 side effect 로직을 작성
+    // 예를 들어, API 호출이나 다른 비동기 동작 등을 수행할 수 있음
+  }, []); // useEffect의 의존성 배열은 빈 배열로 놔두면 처음 한 번만 호출
 
   return (
     <Container>
+      <h1>{name}</h1>
       <InfoBox>
-        <ImageBox />
+        <ImageBox>
+          <img width={'180px'} height={'140px'} src={startup} alt="x"/>
+        </ImageBox>
         <DescriptionBox>
-          <h1>Title</h1>
-          <DetailText>details..</DetailText>
+          <DetailText>스터디, 회의 등을 <br></br>위한 공간입니다.</DetailText>
         </DescriptionBox>
       </InfoBox>
       <ReservationInfo>
         <InfoTitle>대여 시작</InfoTitle>
-        <p>asfd</p>
+        <p>{time}</p>
         <InfoTitle>대여 기간</InfoTitle>
-
         <InputContainer>
-          <Input type="number" />
+          <Input
+            type="number"
+            value={selectedHours}
+            onChange={(e) => setSelectedHours(Number(e.target.value))}
+          />
           <p>시간</p>
         </InputContainer>
       </ReservationInfo>
-      <SubmitButton onClick={handleButtonClick}>test</SubmitButton>
+      <SubmitButton onClick={handleButtonClick}>예약하기</SubmitButton>
     </Container>
   );
 }

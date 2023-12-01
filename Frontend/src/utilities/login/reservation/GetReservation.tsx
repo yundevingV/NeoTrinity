@@ -6,7 +6,7 @@ declare global {
     }
   }
 
-const reserve = async (
+export const reserve = async (
     contractID: string,
     year: number,
     month: number,
@@ -35,7 +35,7 @@ export const getName = async (contractID: string) => {
     const reservationContract = new ethers.Contract(contractID, abi, signer);
 
     const name:string = await reservationContract.code();
-    console.log(name);
+    //console.log(name);
     return name;
 }
 
@@ -56,10 +56,18 @@ export const checkReservation = async (contractID: string) => {
     // 과거 블록 범위에서 이벤트 검색
     const reservations = await reservationContract.queryFilter(filter, startBlock);
     
-    return reservations.map((r) => {
-        console.log('결과:',r.toJSON());
-        console.log(typeof(r.data));
-        return r.data;
+    let result: string[] = [];
+    reservations.map((r) => {
+        const decimalTimestamp = parseInt(r.topics[1], 16) * 1000;
+        const dateObject = new Date(decimalTimestamp);
+
+        // YYYY-MM-DD HH:mm:ss 형식으로 포맷팅
+        const formattedDate = dateObject.toISOString().slice(0, 13).replace('T', ' ');
+        //console.log(formattedDate);
+    
+        result.push(formattedDate);
     });
+    return(result);
+
 }
 
