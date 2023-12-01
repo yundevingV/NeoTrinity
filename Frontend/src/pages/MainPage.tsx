@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import DetailButton from "../components/main/DetailButton";
-
+import gdsc from "../assets/gdsc.png";
+import startup_lounge from '../assets/startup_lounge.jpg';
+import {Link} from 'react-router-dom';
 //TODO: DetailButton 추후에 서버에서 받아온 정보 props로 넘겨야 함.
 
 const Title = styled.p`
@@ -44,7 +46,10 @@ const NoticeBox = styled.div`
      align-items: start;
     }
 `
-
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color : black;
+`
 
 
 function MainPage() {
@@ -52,30 +57,16 @@ function MainPage() {
         <>
             <Title>My Reservation</Title>
             <Container>
-                <DetailButton/>
-                <DetailButton />
-                <DetailButton />
-                <DetailButton />
-                <DetailButton />
-                <DetailButton />
-                <DetailButton />
-                <DetailButton />
-                <DetailButton />
-                <DetailButton />
-                <DetailButton />
-                <DetailButton />
+                <DetailButton src={startup_lounge} description="스타트업 라운지" />
+
             </Container>
             <Title>My Group</Title>
             <Container>
-                <DetailButton/>
-                <DetailButton/>
+              <StyledLink to='/group'>
+                <DetailButton src={gdsc} description="GDSC"/>
+                </StyledLink>
             </Container>
-            <Title>Group's Recent Notice</Title>
-            <NoticeBox>
-                <p>공지1</p>
-                <p>공지2</p>
-                <p>공지3</p>
-            </NoticeBox>
+            
         </>
     )
 }

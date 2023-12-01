@@ -1,14 +1,20 @@
 import styled from "styled-components"
 
+interface Props{
+    src : string,
+    description : string,
+    
+}
 const Box = styled.div`
     display: flex;
     //flex: 0 0 auto;
-    width: 300px;
+    width: 100px;
     height: 300px;
     align-items: center;
     flex-direction: column;
     background-color: white;
     margin: 40px;
+    word-break:break-all;
 
     @media (max-width: 428px){
         width: 130px;
@@ -21,30 +27,44 @@ const ImageBox = styled.div`
     width: 250px;
     height: 140px;
     background-color: lightgrey;
-    margin-top: 10px;
     overflow: hidden;
 
     @media (max-width: 428px){
         width: 120px;
         height: 70px;
-        margin: 5px;
     }
 `
 
 const Image = styled.img`
+width: 100%;
+  height: 100%;
+  word-break:break-all;
+
    
-    object-fit: cover;
+`
+const Description = styled.div`
+    width: 100px;
+    height: 100px;
+    word-break:break-all;
+    font-weight: 700;
+
+    @media (max-width: 428px){
+        width: 120px;
+        height: 70px;
+        word-break:break-all;
+        font-weight: 700;
+    }
 `
 
-function DetailButton(props: any) {
+function DetailButton({src , description} : Props) {
     
    
     return (
         <Box>
             <ImageBox>
-                image
+                <Image src={src} alt='x' />
             </ImageBox>
-            <p>description</p>
+            <Description>{description}</Description>
         </Box>
     )
     
