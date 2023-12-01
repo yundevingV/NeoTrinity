@@ -15,6 +15,7 @@ import Profile from './pages/Proifle/Profile';
 import { GlobalStyle } from './styles/global';
 import SideBar from './components/SideBar/SideBar';
 import Reservation from './pages/Reservation/Reservation';
+import ReservationDetail from './pages/Reservation/ReservationDetail';
 
 
 export default function App() {
@@ -41,6 +42,7 @@ export default function App() {
 
         {/* ㄱreservation */}
         <Route path='/reservation' element = {<SideBar content={<Reservation />} />} />
+        <Route path='/reservation/detail' element = {<SideBar content={<ReservationDetail />} />} />
       
 
       </Routes>

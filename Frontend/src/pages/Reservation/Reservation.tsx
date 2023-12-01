@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { styled } from "styled-components";
+import { DateTimePicker } from '@mui/x-date-pickers';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/de';
+
+import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
+import dayjs, { Dayjs } from 'dayjs';
+import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
+
+import ReservationItem from "../../components/reservation/ReservationItem";
+
+
 
 const Container = styled.div`
 width : 70vw;
@@ -26,6 +38,7 @@ align-items : center;
 
 @media screen and (max-width: 428px) {
     width: 84vw;
+    margin-top: 10px;
 }
 `
 const Date = styled.div`
@@ -75,81 +88,64 @@ margin : 10px auto;
 `
 
 
-const ReservationItem = styled.div`
-padding : 10px 20px;
 
-text-align : left;
-
-.green{
-    color : green;
-}
-
-.red {
-    color : red;
-}
-@media screen and (max-width: 428px) {
-    
-}
-
-`
 
 const Hr = styled.hr`
 width : 90%;
 `
-export default function Reservation(){
-    console.log(window.innerWidth)
-    return(
+export default function Reservation() {
+
+    const defalutTime = dayjs().add(1, 'hour');
+    const defalutTimeToString = defalutTime.format('YYYY-MM-DD HH');
+    const [selectedTime, setSelectedTime] = useState<String | null>(defalutTimeToString);
+    const handleTimeChange= (newTime: Dayjs | null) =>{
+        if (newTime) {
+            setSelectedTime(newTime.format('YYYY-MM-DD HH'));
+            console.log('선택한 시간:', newTime.format('YYYY-MM-DD HH'));
+            
+          }
+        
+    }
+    
+    return (
         <Container>
 
             <TopContainer>
-            <h1>
-                Product 
-            </h1>
-            <Date>
-                2023/10/28
-            </Date>
+                <h1>
+                    Product
+                </h1>
+                <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="zh-cn">
+                    <MobileDateTimePicker 
+                    onChange={handleTimeChange}
+                    defaultValue={defalutTime}
+                    label="시간을 선택해주세요" 
+                    views={['year', 'month', 'day', 'hours']}
+                     />
+                </LocalizationProvider>
             </TopContainer>
+
 
             {/* 검색 */}
             <SearchContainer>
                 <SearchBar />
 
-                
+
             </SearchContainer>
 
 
             <ReservationContainer>
-             <h1>예약가능 물품 </h1>
+                <h1>예약가능 물품 </h1>
+                <Hr/>
 
-                <ReservationItem>
-                    
-                    <h3>노트북</h3>
-                    <p className='green'>대여가능</p>
-                    <p>다솔관 컴퓨터공학과 사무실</p>
-                </ReservationItem>
+                <ReservationItem/>   
 
-                <Hr />
-
-                <ReservationItem>
-                    
-                    <h3>노트북</h3>
-                    <p className='green'>대여가능</p>
-                    <p>다솔관 컴퓨터공학과 사무실</p>
-                </ReservationItem>
             </ReservationContainer>
 
             <ReservationContainer>
-            <h1>예약불가능 물품 </h1>
-
-            <ReservationItem>
-                    
-                    <h3>노트북</h3>
-                    <p className='red'>대여불가능</p>
-                    <p>다솔관 컴퓨터공학과 사무실</p>
-                </ReservationItem>
-            
+                <h1>예약불가능 물품 </h1>
             </ReservationContainer>
-           
+
 
         </Container>
-  )}
+    )
+}
