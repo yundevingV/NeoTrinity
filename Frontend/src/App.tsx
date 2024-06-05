@@ -15,6 +15,8 @@ import Profile from './pages/Proifle/Profile';
 import { GlobalStyle } from './styles/global';
 import SideBar from './components/SideBar/SideBar';
 import Reservation from './pages/Reservation/Reservation';
+import VoteDetail from './pages/Group/vote/VoteDetail';
+import VoteList from './pages/Group/vote/VoteLIst';
 
 
 export default function App() {
@@ -24,9 +26,9 @@ export default function App() {
 
       <Routes>
 
-        <Route path='/login' element = {<Login/>} />
+        <Route path='/' element = {<Login/>} />
         <Route path='/signUp' element = {<SignUp/>} />
-        <Route path='/' element = {<SideBar content={<MainPage/>}/>} />
+        <Route path='/main' element = {<SideBar content={<MainPage/>}/>} />
 
         {/* profile */}
         <Route path='/profile' element = {<SideBar content={<Profile/>}/>} />
@@ -36,8 +38,10 @@ export default function App() {
 
         <Route path='/group/notice' element = {<SideBar content={<GroupNotice />} />} />
         <Route path='/group/notice/detail/:id' element = {<SideBar content={<GroupNoticeDetail />} />} />
-        {/* <Route path='/group/vote/' element = {<GroupVote />} />
-        <Route path='/group/vote/detail/*' element = {<GroupVoteDetail />} /> */}
+
+        <Route path='/group/vote/list' element = {<SideBar content={<VoteList />} />} /> 
+        <Route path='/group/vote/detail/*' element = {<SideBar content={<VoteDetail />} />} /> 
+        
 
         {/* ㄱreservation */}
         <Route path='/reservation' element = {<SideBar content={<Reservation />} />} />

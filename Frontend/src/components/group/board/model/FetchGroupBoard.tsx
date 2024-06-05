@@ -7,6 +7,8 @@ interface FetchGroupBoardData {
     id: number;
     status: string;
     title: string;
+    createdAt : any;
+    user: {username : string};
 }
 
 export default function FetchGroupBoard() {

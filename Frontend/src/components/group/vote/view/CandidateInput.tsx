@@ -1,9 +1,38 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
 interface CandidateInputProps {
   formData: string;
   onCandidateChange: (newInputs: any[]) => void;
 }
+const Container = styled.div`
+margin-bottom: 50px;
+`
+const InputContainer = styled.div`
+
+`
+const Input = styled.input`
+
+`
+
+const DeleteButton = styled.button`
+  width : 20px;
+  height : 20px;
+
+  border : 0px;
+  background: transparent;
+
+  cursor: pointer;
+`
+
+const PlusButton = styled.button`
+  width : 100px;
+  height : 20px;
+
+  border : 0px;
+  border-radius: 4px;
+  background: #74f2b5;
+`
 
 export default function CandidateInput({ formData, onCandidateChange }: CandidateInputProps) {
   const [additionalInputs, setAdditionalInputs] = useState([{ candidate: "" }, { candidate: "" }]);
@@ -36,19 +65,19 @@ export default function CandidateInput({ formData, onCandidateChange }: Candidat
   };
 
   return (
-    <>
+    <Container>
       {additionalInputs.map((input, index) => (
-        <div key={index}>
-          <input
+        <InputContainer key={index}>
+          <Input
             placeholder={`Candidate ${index + 1}`}
             value={input.candidate}
             onChange={(e) => onAdditionalInputChange(index, e.target.value)}
           />
-          <button onClick={() => onRemoveInput(index)}>Remove</button>
-        </div>
+          <DeleteButton onClick={() => onRemoveInput(index)}> X </DeleteButton>
+        </InputContainer>
       ))}
       {/* Button to add more input fields */}
-      <button onClick={onAddInput}>Add</button>
-    </>
+      <PlusButton onClick={onAddInput}>추가</PlusButton>
+    </Container>
   );
 }

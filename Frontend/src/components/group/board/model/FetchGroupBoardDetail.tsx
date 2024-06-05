@@ -8,12 +8,13 @@ interface FetchGroupBoardData {
     id: number;
     status: string;
     title: string;
+    createdAt : any;
+    user: {username : string};
 }
 
 export default function FetchGroupBoardDetail() {
 
     const params = useParams();
-    console.log(params)
     
     let token = sessionStorage.getItem('token');
 
