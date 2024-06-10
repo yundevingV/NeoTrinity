@@ -46,22 +46,22 @@
 <table>
   <tr>
     <td>
-      <img src="https://github.com/yundevingV/image/assets/91381230/143f6474-a828-401f-9380-3d1d384cc8c0" alt="Untitled (7)">
+      <img src="https://github.com/HoChanny/MyGreen/assets/91381230/e95594ce-78cc-406b-9f3e-900ab2cde2e5" alt="Untitled (7)">
       <br>
       <sub>그룹</sub>
     </td>
     <td>
-      <img src="https://github.com/yundevingV/image/assets/91381230/e4ff9776-7af5-4e0f-af98-5a46bc2dc9e3" alt="Untitled (8)">
+      <img src="https://github.com/HoChanny/MyGreen/assets/91381230/439f5de2-d7de-436d-b9c2-4633e45b0fe9" alt="Untitled (8)">
       <br>
       <sub>메인</sub>
     </td>
     <td>
-      <img src="https://github.com/yundevingV/image/assets/91381230/ea572577-56fc-4c2d-9e26-7c1877fa5dcd" alt="Untitled (9)">
+      <img src="https://github.com/HoChanny/MyGreen/assets/91381230/a885e4f5-8700-42f0-bcd5-445402b37386" alt="Untitled (9)">
       <br>
       <sub>예약</sub>
     </td>
     <td>
-      <img src="https://github.com/yundevingV/image/assets/91381230/2f0b9d7e-0394-4b09-bbd4-838d86163511" alt="Untitled (10)">
+      <img src="https://github.com/HoChanny/MyGreen/assets/91381230/ab15f4ae-7629-4621-8976-26ac67b727fe" alt="Untitled (10)">
       <br>
       <sub>예약</sub>
     </td>
